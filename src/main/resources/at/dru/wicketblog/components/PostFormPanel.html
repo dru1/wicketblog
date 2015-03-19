@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:panel>
+
+    <form wicket:id="form">
+        <div class="form-group">
+            <input type="text" name="title" class="form-control" wicket:id="title"/>
+        </div>
+        <div class="form-group">
+            <textarea name="content" class="form-control" wicket:id="content"></textarea>
+        </div>
+        <div class="form-group">
+            <select wicket:id="postCategory">
+                <option>[Kategorie]</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            <wicket:message key="save"/>
+        </button>
+    </form>
+
+</wicket:panel>
+</body>
+</html>

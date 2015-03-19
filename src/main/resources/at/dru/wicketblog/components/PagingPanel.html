@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:panel>
+
+    posts.hasPrevious()
+    <a href="/p/${posts.getNumber()}">Zurück</a>
+
+    posts.hasNext()
+    <a href="/p/${posts.getNumber() + 2}">Weiter</a>
+
+</wicket:panel>
+</body>
+</html>

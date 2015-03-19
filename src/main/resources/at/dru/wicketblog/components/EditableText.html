@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:panel>
+
+    <span wicket:id="view">[Label]</span>
+
+    <form wicket:id="editForm">
+        <div class="form-group">
+            <input type="text" name="content" class="form-control" wicket:id="inputField"/>
+            <textarea name="content" class="form-control" wicket:id="textArea"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            <wicket:message key="save"/>
+        </button>
+    </form>
+
+    <span wicket:id="toggle" class="glyphicon glyphicon-pencil"></span>
+
+</wicket:panel>
+</body>
+</html>

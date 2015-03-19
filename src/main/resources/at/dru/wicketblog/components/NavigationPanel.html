@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:panel>
+
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" wicket:id="appName">[App Name]</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/"><i class="fa fa-home fa-fw"></i>Blog</a></li>
+                <li class=""><a href="/ueberuns"><i class="fa fa-info fa-fw"></i>Über uns</a></li>
+                <li class=""><a href="/kontakt"><i class="fa fa-envelope fa-fw"></i>Kontakt</a></li>
+
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" wicket:id="adminMenuOpener">
+                        Admin <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" wicket:id="adminMenu">
+                        <li class="dropdown-header">Blog</li>
+                        <li><a href="/admin/posts">Posts</a></li>
+                        <li><a href="/admin/posts/categories">Kategorien</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">System</li>
+                        <li><a href="/admin/settings">Einstellungen</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div wicket:id="accountInfo">[Account Info]</div>
+        </div>
+    </nav>
+
+
+</wicket:panel>
+</body>
+</html>
