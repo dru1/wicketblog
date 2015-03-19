@@ -1,5 +1,8 @@
 package at.dru.wicketblog.model;
 
+import at.dru.wicketblog.service.EntityPropertyDesc;
+import at.dru.wicketblog.service.EntityPropertyType;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.persistence.*;
@@ -16,8 +19,10 @@ public abstract class DefaultEntity {
 
     private boolean disabled;
 
+    @Nonnull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @EntityPropertyDesc(type = EntityPropertyType.ID, optional = false)
     public Long getId() {
         return id;
     }
@@ -26,8 +31,9 @@ public abstract class DefaultEntity {
         this.id = id;
     }
 
-    @Nullable
+    @Nonnull
     @Basic(optional = false)
+    @EntityPropertyDesc(type = EntityPropertyType.DATETIME, optional = false)
     public Date getCreated() {
         return created;
     }
@@ -36,8 +42,9 @@ public abstract class DefaultEntity {
         this.created = created;
     }
 
-    @Nullable
+    @Nonnull
     @Basic(optional = true)
+    @EntityPropertyDesc(type = EntityPropertyType.DATETIME, optional = false)
     public Date getModified() {
         return modified;
     }
@@ -48,6 +55,7 @@ public abstract class DefaultEntity {
 
     @Nonnull
     @Basic(optional = false)
+    @EntityPropertyDesc(type = EntityPropertyType.FLAG, optional = false)
     public Boolean getDisabled() {
         return disabled;
     }

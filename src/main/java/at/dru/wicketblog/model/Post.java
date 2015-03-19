@@ -1,5 +1,8 @@
 package at.dru.wicketblog.model;
 
+import at.dru.wicketblog.service.EntityPropertyDesc;
+import at.dru.wicketblog.service.EntityPropertyType;
+
 import javax.annotation.Nonnull;
 import javax.persistence.*;
 
@@ -16,6 +19,7 @@ public class Post extends DefaultEntity {
 
     @Nonnull
     @Basic(optional = false)
+    @EntityPropertyDesc(type = EntityPropertyType.SHORT_TEXT, optional = false)
     public String getTitle() {
         return title;
     }
@@ -27,6 +31,7 @@ public class Post extends DefaultEntity {
     @Nonnull
     @Lob
     @Column(nullable = false)
+    @EntityPropertyDesc(type = EntityPropertyType.LONG_TEXT, optional = true)
     public String getContent() {
         return content;
     }
@@ -37,6 +42,7 @@ public class Post extends DefaultEntity {
 
     @Nonnull
     @ManyToOne(optional = false)
+    @EntityPropertyDesc(type = EntityPropertyType.MANY_TO_ONE, optional = false)
     public Account getAuthor() {
         return author;
     }
@@ -47,6 +53,7 @@ public class Post extends DefaultEntity {
 
     @Nonnull
     @ManyToOne(optional = false)
+    @EntityPropertyDesc(type = EntityPropertyType.MANY_TO_ONE, optional = false)
     public PostCategory getPostCategory() {
         return postCategory;
     }
