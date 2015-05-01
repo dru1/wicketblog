@@ -15,7 +15,7 @@
         <wicket.version>6.19.0</wicket.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>at.dru.wicketblog.WicketWebApplication</start-class>
-        <java.version>1.7</java.version>
+		<java.version>1.8</java.version>
     </properties>
 
     <parent>
