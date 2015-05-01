@@ -32,10 +32,10 @@ public class PostCategoryListPanel extends ListPanel<PostCategory> {
         }) {
             @Override
             protected void populateItem(ListItem<PostCategory> item) {
-                item.add(new EditableText<>("name", new PropertyModel<String>(item.getModel(), "name"), FieldType.INPUT_FIELD, PostCategory.class));
-                item.add(new EditableText<>("contentClass", new PropertyModel<String>(item.getModel(), "contentClass"), FieldType.INPUT_FIELD, PostCategory.class));
-                item.add(new EditableText<>("iconClass", new PropertyModel<String>(item.getModel(), "iconClass"), FieldType.INPUT_FIELD, PostCategory.class));
-                item.add(new EditableText<>("backgroundClass", new PropertyModel<String>(item.getModel(), "backgroundClass"), FieldType.INPUT_FIELD, PostCategory.class));
+                item.add(new EditableText<>("name", new PropertyModel<String>(item.getModel(), "name"), FieldType.TEXT_FIELD, PostCategory.class));
+                item.add(new EditableText<>("contentClass", new PropertyModel<String>(item.getModel(), "contentClass"), FieldType.TEXT_FIELD, PostCategory.class));
+                item.add(new EditableText<>("iconClass", new PropertyModel<String>(item.getModel(), "iconClass"), FieldType.TEXT_FIELD, PostCategory.class));
+                item.add(new EditableText<>("backgroundClass", new PropertyModel<String>(item.getModel(), "backgroundClass"), FieldType.TEXT_FIELD, PostCategory.class));
             }
         });
     }

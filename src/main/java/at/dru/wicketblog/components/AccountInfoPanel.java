@@ -75,13 +75,13 @@ public class AccountInfoPanel extends Panel {
         add(new LoginFormPanel("loginPanel") {
             @Override
             protected String getFormCssClass() {
-                return "navbar-form navbar-right";
+                return super.getFormCssClass() + " navbar-form navbar-right";
             }
 
             @Override
             public boolean isVisible() {
                 return !isSignedIn();
             }
-        });
+        }.setFormType(FormType.INLINE));
     }
 }

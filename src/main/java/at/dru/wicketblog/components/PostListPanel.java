@@ -32,7 +32,7 @@ public class PostListPanel extends ListPanel<Post> {
         }) {
             @Override
             protected void populateItem(ListItem<Post> item) {
-                item.add(new EditableText<>("title", new PropertyModel<String>(item.getModel(), "title"), FieldType.INPUT_FIELD, Post.class));
+                item.add(new EditableText<>("title", new PropertyModel<String>(item.getModel(), "title"), FieldType.TEXT_FIELD, Post.class));
                 item.add(new EditableText<>("content", new PropertyModel<String>(item.getModel(), "content"), FieldType.TEXT_AREA, Post.class));
             }
         });

@@ -1,5 +1,6 @@
 package at.dru.wicketblog.pages;
 
+import at.dru.wicketblog.components.FormType;
 import at.dru.wicketblog.components.LoginFormPanel;
 
 public class LoginPage extends AbstractPage {
@@ -8,7 +9,7 @@ public class LoginPage extends AbstractPage {
     protected void onInitialize() {
         super.onInitialize();
 
-        add(new LoginFormPanel("loginPanel"));
+        add(new LoginFormPanel("loginPanel").setFormType(FormType.HORIZONTAL));
     }
 
     @Override

@@ -1,20 +1,29 @@
 package at.dru.wicketblog.components;
 
+import at.dru.wicketblog.model.Account;
+import at.dru.wicketblog.wicket.FormBuilder;
 import at.dru.wicketblog.wicket.CurrentAuthenticatedWebSession;
+import at.dru.wicketblog.wicket.MetaModel;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.StatelessForm;
-import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
 
 public class LoginFormPanel extends Panel {
 
+    private FormType formType;
+
     public LoginFormPanel(String id) {
         super(id);
+        this.formType = FormType.DEFAULT;
+    }
+
+    public LoginFormPanel setFormType(FormType formType) {
+        this.formType = formType;
+        return this;
     }
 
     @Override
@@ -23,13 +32,16 @@ public class LoginFormPanel extends Panel {
 
         final ValueMap properties = new ValueMap();
 
-        Form<ValueMap> form = new StatelessForm<ValueMap>("loginForm", Model.of(properties)) {
+        IModel<ValueMap> formModel = Model.of(properties);
+        Form<ValueMap> form = new StatelessForm<ValueMap>("loginForm", formModel) {
             @Override
             protected void onSubmit() {
                 super.onSubmit();
 
                 // Login
-                boolean authResult = CurrentAuthenticatedWebSession.get().signIn(properties.getString("username"), properties.getString("password"));
+                boolean authResult = CurrentAuthenticatedWebSession.get().signIn(
+                        properties.getString("username"), properties.getString("password"));
+
                 if (authResult) {
                     continueToOriginalDestination();
                 }
@@ -43,18 +55,15 @@ public class LoginFormPanel extends Panel {
             }
         };
 
-        TextField<String> username = new TextField<>("username", new PropertyModel<String>(properties, "username"));
-        username.setType(String.class);
-        form.add(username);
-
-        PasswordTextField password = new PasswordTextField("password", new PropertyModel<String>(properties, "password"));
-        password.setType(String.class);
-        form.add(password);
+        new FormBuilder<>(formModel)
+                .withTextField("username", FieldType.TEXT_FIELD, new MetaModel<>(Account.class, "username"))
+                .withTextField("password", FieldType.PASSWORD_FIELD, new MetaModel<>(Account.class, "password"))
+                .build(form);
 
         add(form);
     }
 
     protected String getFormCssClass() {
-        return "form";
+        return formType.getCssClass();
     }
 }
