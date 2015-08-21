@@ -5,13 +5,10 @@ import at.dru.wicketblog.components.FormRow;
 import at.dru.wicketblog.model.DefaultEntity;
 import at.dru.wicketblog.service.EntityServiceRegistry;
 import com.google.common.collect.Lists;
-import org.apache.wicket.Component;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -25,12 +22,12 @@ public final class EntityFormBuilder<E extends DefaultEntity> extends AbstractFo
     private final IModel<E> entityModel;
 
     @SpringBean
-    private transient EntityServiceRegistry entityServiceRegistry;
+    private EntityServiceRegistry entityServiceRegistry;
 
     private final FormBuilder<E> baseBuilder;
 
     public EntityFormBuilder(Class<E> entityClass, IModel<E> entityModel) {
-        super(new ArrayList<Component>());
+        super(new ArrayList<>());
 
         this.entityClass = entityClass;
         this.entityModel = entityModel;

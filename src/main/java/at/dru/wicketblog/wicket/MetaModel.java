@@ -9,7 +9,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class MetaModel<T extends DefaultEntity> implements IModel<String> {
 
     @SpringBean
-    private transient MetaModelService metaModelService;
+    private MetaModelService metaModelService;
 
     private final Class<T> entityClass;
 

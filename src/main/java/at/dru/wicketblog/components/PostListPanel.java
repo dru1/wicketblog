@@ -24,16 +24,16 @@ public class PostListPanel extends ListPanel<Post> {
     protected void onInitialize() {
         super.onInitialize();
 
-        add(new ListView<Post>("posts", new LoadableDetachableModel<List<? extends Post>>() {
+        add(new ListView<Post>("posts", new LoadableDetachableModel<List<Post>>() {
             @Override
-            protected List<? extends Post> load() {
+            protected List<Post> load() {
                 return postRepository.findAllByOrderByModifiedDesc(new PageRequest(0, 20)).getContent();
             }
         }) {
             @Override
             protected void populateItem(ListItem<Post> item) {
-                item.add(new EditableText<>("title", new PropertyModel<String>(item.getModel(), "title"), FieldType.TEXT_FIELD, Post.class));
-                item.add(new EditableText<>("content", new PropertyModel<String>(item.getModel(), "content"), FieldType.TEXT_AREA, Post.class));
+                item.add(new EditableText<>("title", new PropertyModel<>(item.getModel(), "title"), FieldType.TEXT_FIELD, Post.class));
+                item.add(new EditableText<>("content", new PropertyModel<>(item.getModel(), "content"), FieldType.TEXT_AREA, Post.class));
             }
         });
     }
