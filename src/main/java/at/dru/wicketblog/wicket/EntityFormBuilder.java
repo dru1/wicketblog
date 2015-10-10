@@ -5,6 +5,7 @@ import at.dru.wicketblog.components.FormRow;
 import at.dru.wicketblog.model.DefaultEntity;
 import at.dru.wicketblog.service.EntityServiceRegistry;
 import com.google.common.collect.Lists;
+import org.apache.wicket.Component;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
@@ -27,7 +28,7 @@ public final class EntityFormBuilder<E extends DefaultEntity> extends AbstractFo
     private final FormBuilder<E> baseBuilder;
 
     public EntityFormBuilder(Class<E> entityClass, IModel<E> entityModel) {
-        super(new ArrayList<>());
+        super(new ArrayList<Component>());
 
         this.entityClass = entityClass;
         this.entityModel = entityModel;
