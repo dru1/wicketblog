@@ -15,6 +15,8 @@ import java.util.List;
 
 public class FormBuilder<E> extends AbstractFormBuilder<E> {
 
+    private static final long serialVersionUID = 1L;
+
     private final IModel<E> formModel;
 
     public FormBuilder(IModel<E> formModel) {
@@ -38,10 +40,14 @@ public class FormBuilder<E> extends AbstractFormBuilder<E> {
         switch (fieldType) {
             case PASSWORD_FIELD:
                 formComponent = new FormRow(fieldName) {
+
+                    private static final long serialVersionUID = 1L;
+
                     @Override
                     public IModel<String> getLabel() {
                         return labelModel;
                     }
+
                 };
                 formComponent.getBodyContainer().add(new PasswordTextField(fieldName, fieldModel)
                         .setLabel(labelModel)
@@ -49,10 +55,14 @@ public class FormBuilder<E> extends AbstractFormBuilder<E> {
                 break;
             case TEXT_AREA:
                 formComponent = new FormRow(fieldName) {
+
+                    private static final long serialVersionUID = 1L;
+
                     @Override
                     public IModel<String> getLabel() {
                         return labelModel;
                     }
+
                 };
                 formComponent.getBodyContainer().add(new TextArea<>(fieldName, fieldModel)
                         .setLabel(labelModel)
@@ -61,10 +71,14 @@ public class FormBuilder<E> extends AbstractFormBuilder<E> {
             case TEXT_FIELD:
             default:
                 formComponent = new FormRow(fieldName) {
+
+                    private static final long serialVersionUID = 1L;
+
                     @Override
                     public IModel<String> getLabel() {
                         return labelModel;
                     }
+                    
                 };
                 formComponent.getBodyContainer().add(new TextField<>(fieldName, fieldModel)
                         .setLabel(labelModel)

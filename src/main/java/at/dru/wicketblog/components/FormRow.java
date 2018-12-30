@@ -3,12 +3,11 @@ package at.dru.wicketblog.components;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.border.Border;
-import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.ILabelProvider;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
 
 public abstract class FormRow extends Border implements ILabelProvider<String> {
+
+    private static final long serialVersionUID = 1L;
 
     public FormRow(String id) {
         super(id);

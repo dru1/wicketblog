@@ -11,6 +11,8 @@ import org.apache.wicket.util.value.ValueMap;
 
 public class SetupPage extends AbstractPage {
 
+    private static final long serialVersionUID = 1L;
+    
     @SpringBean
     private AccountService accountService;
 
@@ -21,6 +23,9 @@ public class SetupPage extends AbstractPage {
         final ValueMap properties = new ValueMap();
 
         Form<ValueMap> form = new Form<ValueMap>("setupForm", Model.of(properties)) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void onSubmit() {
                 super.onSubmit();
@@ -29,6 +34,7 @@ public class SetupPage extends AbstractPage {
 
                 success("Success !!!");
             }
+
         };
 
         TextField<String> username = new TextField<>("username", new PropertyModel<String>(properties, "username"));

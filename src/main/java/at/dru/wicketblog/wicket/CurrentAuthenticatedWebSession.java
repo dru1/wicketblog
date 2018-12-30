@@ -15,8 +15,10 @@ import javax.annotation.Nullable;
 
 public class CurrentAuthenticatedWebSession extends AuthenticatedWebSession {
 
+    private static final long serialVersionUID = 1L;
+
     @SpringBean
-    private volatile AccountService accountService;
+    private AccountService accountService;
 
     private Roles roles;
 
@@ -62,6 +64,7 @@ public class CurrentAuthenticatedWebSession extends AuthenticatedWebSession {
     @Override
     public void signOut() {
         super.signOut();
+        
         reset();
     }
 

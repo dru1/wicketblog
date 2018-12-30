@@ -7,7 +7,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -16,6 +15,8 @@ import org.apache.wicket.model.PropertyModel;
 import javax.annotation.Nonnull;
 
 public class EditableText<T, E extends DefaultEntity> extends Panel {
+
+    private static final long serialVersionUID = 1L;
 
     private final Class<E> entityClass;
     private final PropertyModel<T> formModel;
@@ -34,6 +35,9 @@ public class EditableText<T, E extends DefaultEntity> extends Panel {
         this.entityClass = entityClass;
 
         this.viewMode = new LoadableDetachableModel<ViewMode>() {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected ViewMode load() {
                 return ViewMode.MODE_VIEW;
@@ -48,9 +52,12 @@ public class EditableText<T, E extends DefaultEntity> extends Panel {
         final Component viewEdit;
         if (ViewMode.MODE_EDIT.equals(viewMode.getObject())) {
             viewEdit = new InlineEditForm<T, E>("viewEdit", formModel, entityClass, fieldType) {
+
+                private static final long serialVersionUID = 1L;
+
                 @Override
-                protected void onAfterSubmit(AjaxRequestTarget target, Form<?> form) {
-                    super.onAfterSubmit(target, form);
+                protected void onAfterSubmit(AjaxRequestTarget target) {
+                    super.onAfterSubmit(target);
                     viewMode.detach();
                     target.add(EditableText.this);
                 }
@@ -70,6 +77,9 @@ public class EditableText<T, E extends DefaultEntity> extends Panel {
         setOutputMarkupId(true);
 
         add(new AjaxLink<Void>("toggle") {
+            
+            private static final long serialVersionUID = 1L;
+
             @Override
             public void onClick(AjaxRequestTarget target) {
                 toggleMode();

@@ -12,16 +12,20 @@
     <description>Wicket Blog</description>
 
     <properties>
-        <wicket.version>7.0.0</wicket.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>at.dru.wicketblog.WicketWebApplication</start-class>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
+        <wicket.version>8.2.0</wicket.version>
+        <findbugs.version>3.0.2</findbugs.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+        <guava.version>27.0.1-jre</guava.version>
+        <mysql.version>8.0.13</mysql.version>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.5.RELEASE</version>
+        <version>2.1.1.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -84,24 +88,16 @@
             <artifactId>spring-jdbc</artifactId>
         </dependency>
 
+        <!-- db -->
+
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.7.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.10.4</version>
-        </dependency>
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.18</version>
+            <version>${mysql.version}</version>
         </dependency>
 
         <!-- common -->
@@ -109,17 +105,17 @@
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
-            <version>2.0.1</version>
+            <version>${findbugs.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.1</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>18.0</version>
+            <version>${guava.version}</version>
         </dependency>
 
     </dependencies>
@@ -133,6 +129,14 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

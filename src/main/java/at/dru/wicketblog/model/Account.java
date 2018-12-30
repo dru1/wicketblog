@@ -4,9 +4,6 @@ import javax.annotation.Nonnull;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 
-/**
- * Created by dru on 3/1/15.
- */
 @Entity
 public class Account extends DefaultEntity {
 

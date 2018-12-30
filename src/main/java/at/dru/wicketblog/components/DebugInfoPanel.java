@@ -9,6 +9,8 @@ import java.util.Date;
 
 public class DebugInfoPanel extends Panel {
 
+    private static final long serialVersionUID = 1L;
+    
     @SpringBean
     private WicketWebApplication wicketWebApplication;
 

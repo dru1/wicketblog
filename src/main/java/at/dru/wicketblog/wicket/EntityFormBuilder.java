@@ -18,6 +18,8 @@ import java.util.List;
 
 public final class EntityFormBuilder<E extends DefaultEntity> extends AbstractFormBuilder<E> {
 
+    private static final long serialVersionUID = 1L;
+
     private final Class<E> entityClass;
 
     private final IModel<E> entityModel;
@@ -49,17 +51,25 @@ public final class EntityFormBuilder<E extends DefaultEntity> extends AbstractFo
         PropertyModel<C> fieldModel = new PropertyModel<>(entityModel, fieldName);
         final MetaModel<E> labelModel = new MetaModel<>(entityClass, fieldName);
         IModel<List<C>> choiceModel = new LoadableDetachableModel<List<C>>() {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected List<C> load() {
                 return Lists.newArrayList(entityServiceRegistry.forClass(choiceClass).findAll());
             }
+
         };
 
         FormRow formRow = new FormRow(fieldName) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             public IModel<String> getLabel() {
                 return labelModel;
             }
+            
         };
 
         formRow.getBodyContainer().add(new DropDownChoice<>(fieldName, fieldModel, choiceModel).setLabel(labelModel));

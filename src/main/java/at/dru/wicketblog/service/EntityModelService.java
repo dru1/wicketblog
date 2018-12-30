@@ -1,23 +1,26 @@
 package at.dru.wicketblog.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.SimpleBeanDefinitionRegistry;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EntityModelService implements InitializingBean {
 
+    Logger logger = LoggerFactory.getLogger(EntityModelService.class);
+
     public void scanEntities() {
         BeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
         ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry, false);
         scanner.setResourcePattern("**/*.class");
-        int found = scanner.scan("at.dru.model");
-        System.out.println("Count: " + registry.getBeanDefinitionCount());
+        scanner.scan("at.dru.model");
+        logger.info("Found {} beans", registry.getBeanDefinitionCount());
         for (String beanDefinitionName : registry.getBeanDefinitionNames()) {
-            System.out.println(beanDefinitionName);
+            logger.info("Bean {}", beanDefinitionName);
         }
     }
 

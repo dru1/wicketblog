@@ -1,14 +1,15 @@
 package at.dru.wicketblog.wicket;
 
-import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.FormComponent;
-
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.form.Form;
+
 public class AbstractFormBuilder<E> implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     protected List<Component> componentList;
 
     public AbstractFormBuilder(List<Component> componentList) {

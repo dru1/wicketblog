@@ -1,9 +1,6 @@
 package at.dru.wicketblog.components;
 
 
-import at.dru.wicketblog.model.DefaultEntity;
-import at.dru.wicketblog.service.EntityServiceRegistry;
-import at.dru.wicketblog.wicket.MetaModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.behavior.AttributeAppender;
@@ -11,11 +8,16 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import at.dru.wicketblog.model.DefaultEntity;
+import at.dru.wicketblog.service.EntityServiceRegistry;
+import at.dru.wicketblog.wicket.MetaModel;
+
 public class InlineEditForm<T, E extends DefaultEntity> extends Panel {
+
+    private static final long serialVersionUID = 1L;
 
     @SpringBean
     private EntityServiceRegistry entityServiceRegistry;
@@ -45,18 +47,22 @@ public class InlineEditForm<T, E extends DefaultEntity> extends Panel {
         super.onInitialize();
 
         Form<T> form = new Form<T>("editForm", formModel) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void onSubmit() {
-                E entity = (E) formModel.getInnermostModelOrObject();
+                E entity = entityClass.cast(formModel.getInnermostModelOrObject());
                 entityServiceRegistry.forClass(entityClass).saveEntity(entity);
-                final AjaxRequestTarget target = getRequestCycle().find(AjaxRequestTarget.class);
-                if (target != null) {
-                    target.add(InlineEditForm.this);
-                }
+                getRequestCycle().find(AjaxRequestTarget.class).ifPresent(target -> target.add(InlineEditForm.this));
             }
+            
         };
 
         TextField<T> titleField = new TextField<T>("inputField", formModel) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void onConfigure() {
                 super.onConfigure();
@@ -67,6 +73,9 @@ public class InlineEditForm<T, E extends DefaultEntity> extends Panel {
         titleField.setLabel(labelModel);
 
         TextArea<T> contentField = new TextArea<T>("textArea", formModel) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void onConfigure() {
                 super.onConfigure();
@@ -77,10 +86,12 @@ public class InlineEditForm<T, E extends DefaultEntity> extends Panel {
         contentField.setLabel(labelModel);
 
         AjaxSubmitLink submitLink = new AjaxSubmitLink("submit", form) {
+            private static final long serialVersionUID = 1L;
+
             @Override
-            protected void onAfterSubmit(AjaxRequestTarget target, Form<?> form) {
-                super.onAfterSubmit(target, form);
-                InlineEditForm.this.onAfterSubmit(target, form);
+            protected void onAfterSubmit(AjaxRequestTarget target) {
+                super.onAfterSubmit(target);
+                InlineEditForm.this.onAfterSubmit(target);
             }
         };
 
@@ -90,6 +101,6 @@ public class InlineEditForm<T, E extends DefaultEntity> extends Panel {
         add(form);
     }
 
-    protected void onAfterSubmit(AjaxRequestTarget target, Form<?> form) {
+    protected void onAfterSubmit(AjaxRequestTarget target) {
     }
 }

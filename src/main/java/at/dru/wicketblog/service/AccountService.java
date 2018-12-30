@@ -25,7 +25,6 @@ public class AccountService extends AbstractEntityService<Account> {
         return null;
     }
 
-
     public void setupAdmin(@Nonnull String login, @Nonnull String password, boolean isAdmin) {
         Account acc = new Account();
 
@@ -36,6 +35,7 @@ public class AccountService extends AbstractEntityService<Account> {
         accountRepository.save(acc);
     }
 
+    @Nonnull
     @Override
     public Class<Account> getEntityType() {
         return Account.class;
@@ -46,6 +46,7 @@ public class AccountService extends AbstractEntityService<Account> {
         accountRepository.save(entity);
     }
 
+    @Nonnull
     @Override
     public Iterable<Account> findAll() {
         return accountRepository.findAll();

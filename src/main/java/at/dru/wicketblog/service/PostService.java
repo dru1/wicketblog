@@ -13,6 +13,7 @@ public class PostService extends AbstractEntityService<Post> {
     @Autowired
     private PostRepository postRepository;
 
+    @Nonnull
     @Override
     public Class<Post> getEntityType() {
         return Post.class;
@@ -23,6 +24,7 @@ public class PostService extends AbstractEntityService<Post> {
         postRepository.save(entity);
     }
 
+    @Nonnull
     @Override
     public Iterable<Post> findAll() {
         return postRepository.findAll();

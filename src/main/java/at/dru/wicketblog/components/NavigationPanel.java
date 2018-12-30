@@ -9,6 +9,8 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 public class NavigationPanel extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     @SpringBean
     private WicketWebApplication wicketWebApplication;
 
@@ -23,12 +25,18 @@ public class NavigationPanel extends Panel {
         add(new Label("appName", wicketWebApplication.getAppName()));
 
         add(new WebMarkupContainer("adminMenuOpener") {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             public boolean isVisible() {
                 return AuthUtils.isAdmin();
             }
         });
         add(new WebMarkupContainer("adminMenu") {
+            
+            private static final long serialVersionUID = 1L;
+
             @Override
             public boolean isVisible() {
                 return AuthUtils.isAdmin();

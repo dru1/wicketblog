@@ -8,6 +8,8 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 public class MetaModel<T extends DefaultEntity> implements IModel<String> {
 
+    private static final long serialVersionUID = 1L;
+
     @SpringBean
     private MetaModelService metaModelService;
 

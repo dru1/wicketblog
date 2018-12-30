@@ -14,6 +14,8 @@ import org.apache.wicket.util.value.ValueMap;
 
 public class LoginFormPanel extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     private FormType formType;
 
     public LoginFormPanel(String id) {
@@ -34,6 +36,9 @@ public class LoginFormPanel extends Panel {
 
         IModel<ValueMap> formModel = Model.of(properties);
         Form<ValueMap> form = new StatelessForm<ValueMap>("loginForm", formModel) {
+            
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void onSubmit() {
                 super.onSubmit();

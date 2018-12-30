@@ -11,6 +11,8 @@ import javax.annotation.Nonnull;
 
 public class AdminPostCategoryPage extends AbstractAdminFormPage<PostCategory> {
 
+    private static final long serialVersionUID = 1L;
+
     @Override
     protected String getPageTitle() {
         return "Admin Post Categories";

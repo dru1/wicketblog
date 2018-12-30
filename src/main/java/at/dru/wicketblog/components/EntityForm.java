@@ -9,6 +9,9 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import javax.annotation.Nonnull;
 
 public class EntityForm<T extends DefaultEntity> extends Form<T> {
+    
+    private static final long serialVersionUID = 1L;
+
     @SpringBean
     protected EntityServiceRegistry entityServiceRegistry;
 

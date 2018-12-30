@@ -13,6 +13,8 @@ import java.util.List;
 
 public class PostListPanel extends ListPanel<Post> {
 
+    private static final long serialVersionUID = 1L;
+
     @SpringBean
     private PostRepository postRepository;
 
@@ -25,11 +27,17 @@ public class PostListPanel extends ListPanel<Post> {
         super.onInitialize();
 
         add(new ListView<Post>("posts", new LoadableDetachableModel<List<Post>>() {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected List<Post> load() {
-                return postRepository.findAllByOrderByModifiedDesc(new PageRequest(0, 20)).getContent();
+                return postRepository.findAllByOrderByModifiedDesc(PageRequest.of(0, 20)).getContent();
             }
         }) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void populateItem(ListItem<Post> item) {
                 item.add(new EditableText<>("title", new PropertyModel<>(item.getModel(), "title"), FieldType.TEXT_FIELD, Post.class));

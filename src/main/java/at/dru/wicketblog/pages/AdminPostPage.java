@@ -11,13 +11,15 @@ import javax.annotation.Nonnull;
 
 public class AdminPostPage extends AbstractAdminFormPage<Post> {
 
+    private static final long serialVersionUID = 1L;
+
     @Override
     protected ListPanel<Post> getListPanel(@Nonnull String wicketId) {
         return new PostListPanel(wicketId);
     }
 
     @Override
-    protected Post newInstance() throws IllegalAccessException, InstantiationException {
+    protected Post newInstance() {
         Post p = super.newInstance();
         p.setAuthor(getCurrentAccount());
         return p;

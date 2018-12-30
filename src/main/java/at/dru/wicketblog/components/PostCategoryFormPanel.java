@@ -6,6 +6,8 @@ import org.apache.wicket.model.IModel;
 
 public class PostCategoryFormPanel extends FormPanel<PostCategory> {
 
+    private static final long serialVersionUID = 1L;
+
     public PostCategoryFormPanel(String id, IModel<PostCategory> model) {
         super(id, model, PostCategory.class);
         setFormType(FormType.HORIZONTAL);

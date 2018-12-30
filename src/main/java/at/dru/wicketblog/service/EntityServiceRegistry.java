@@ -5,24 +5,27 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 @Service
 public class EntityServiceRegistry {
 
-    private Map<Class, EntityService> entityServiceMap = new HashMap<>();
+    private Map<Class<?>, EntityService<?>> entityServiceMap = new HashMap<>();
 
-    public void registerService(Class forClass, EntityService entityService) {
-        this.entityServiceMap.put(forClass, entityService);
+    public <E> void registerService(@Nonnull EntityService<E> entityService) {
+        this.entityServiceMap.put(entityService.getEntityType(), entityService);
     }
 
-    public <T> EntityService<T> forClass(Class<T> forClass) {
-        EntityService<T> entityService = entityServiceMap.get(forClass);
+    @SuppressWarnings("unchecked")
+    @Nonnull
+    public <T> EntityService<T> forClass(@Nonnull Class<T> entityClass) {
+        EntityService<T> entityService = (EntityService<T>) entityServiceMap.get(entityClass);
 
         if (entityService == null) {
-            throw new ServiceException("No entityService registered for class: " + forClass);
+            throw new ServiceException("No entityService registered for class: " + entityClass);
         }
 
         return entityService;
     }
-
 
 }

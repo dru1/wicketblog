@@ -13,6 +13,8 @@ import java.util.List;
 
 public class PostCategoryListPanel extends ListPanel<PostCategory> {
 
+    private static final long serialVersionUID = 1L;
+
     @SpringBean
     private PostCategoryRepository postCategoryRepository;
 
@@ -25,11 +27,17 @@ public class PostCategoryListPanel extends ListPanel<PostCategory> {
         super.onInitialize();
 
         add(new ListView<PostCategory>("categories", new LoadableDetachableModel<List<PostCategory>>() {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected List<PostCategory> load() {
                 return Lists.newArrayList(postCategoryRepository.findAll());
             }
         }) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void populateItem(ListItem<PostCategory> item) {
                 item.add(new EditableText<>("name", new PropertyModel<>(item.getModel(), "name"), FieldType.TEXT_FIELD, PostCategory.class));
@@ -37,6 +45,7 @@ public class PostCategoryListPanel extends ListPanel<PostCategory> {
                 item.add(new EditableText<>("iconClass", new PropertyModel<>(item.getModel(), "iconClass"), FieldType.TEXT_FIELD, PostCategory.class));
                 item.add(new EditableText<>("backgroundClass", new PropertyModel<>(item.getModel(), "backgroundClass"), FieldType.TEXT_FIELD, PostCategory.class));
             }
+            
         });
     }
 

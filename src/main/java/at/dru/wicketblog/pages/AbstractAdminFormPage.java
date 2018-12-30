@@ -6,26 +6,29 @@ import at.dru.wicketblog.model.DefaultEntity;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.springframework.util.ReflectionUtils;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public abstract class AbstractAdminFormPage<T extends DefaultEntity> extends AbstractAuthenticatedPage {
 
+    private static final long serialVersionUID = 1L;
+
     @Override
     protected void onInitialize() {
         super.onInitialize();
 
         IModel<T> formModel = new LoadableDetachableModel<T>() {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected T load() {
-                T entity = null;
-                try {
-                    entity = newInstance();
-                } catch (InstantiationException | IllegalAccessException e) {
-                    error(e.getMessage());
-                }
-                return entity;
+                return newInstance();
             }
         };
 
@@ -33,8 +36,15 @@ public abstract class AbstractAdminFormPage<T extends DefaultEntity> extends Abs
         add(getListPanel("list"));
     }
 
-    protected T newInstance() throws IllegalAccessException, InstantiationException {
-        return getFormType().newInstance();
+    protected T newInstance() {
+        Constructor<T> constructor;
+        try {
+            constructor = ReflectionUtils.accessibleConstructor(getFormType(), new Class<?>[] {});
+            return constructor.newInstance(new Object[] {});
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException e) {
+            throw new RuntimeException("Cannot create instance of type " + getFormType().getCanonicalName(), e);
+        }
     }
 
     protected abstract ListPanel<T> getListPanel(@Nonnull String wicketId);

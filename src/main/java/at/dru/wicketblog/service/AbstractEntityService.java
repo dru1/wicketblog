@@ -10,6 +10,6 @@ public abstract class AbstractEntityService<T> implements EntityService<T>, Init
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        entityServiceRegistry.registerService(getEntityType(), this);
+        entityServiceRegistry.registerService(this);
     }
 }

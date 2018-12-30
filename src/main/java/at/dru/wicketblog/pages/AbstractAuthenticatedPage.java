@@ -11,6 +11,8 @@ import javax.annotation.Nullable;
 
 public abstract class AbstractAuthenticatedPage extends AbstractPage {
 
+    private static final long serialVersionUID = 1L;
+    
     @SpringBean
     protected AccountRepository accountRepository;
 
@@ -72,7 +74,7 @@ public abstract class AbstractAuthenticatedPage extends AbstractPage {
             wicketWebApplication.restartResponseAtSignInPage();
         }
 
-        Account account = accountRepository.findOne(accountId);
+        Account account = accountRepository.findById(accountId).orElse(null);
         if (account == null) {
             // throws an exception
             wicketWebApplication.restartResponseAtSignInPage();
