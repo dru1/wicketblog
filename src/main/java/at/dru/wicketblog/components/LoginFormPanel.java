@@ -1,16 +1,16 @@
 package at.dru.wicketblog.components;
 
-import at.dru.wicketblog.model.Account;
-import at.dru.wicketblog.wicket.FormBuilder;
-import at.dru.wicketblog.wicket.CurrentAuthenticatedWebSession;
-import at.dru.wicketblog.wicket.MetaModel;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.value.ValueMap;
+
+import at.dru.wicketblog.model.Account;
+import at.dru.wicketblog.wicket.AuthUtils;
+import at.dru.wicketblog.wicket.FormBuilder;
+import at.dru.wicketblog.wicket.MetaModel;
 
 public class LoginFormPanel extends Panel {
 
@@ -35,7 +35,7 @@ public class LoginFormPanel extends Panel {
         final ValueMap properties = new ValueMap();
 
         IModel<ValueMap> formModel = Model.of(properties);
-        Form<ValueMap> form = new StatelessForm<ValueMap>("loginForm", formModel) {
+        Form<ValueMap> form = new Form<ValueMap>("loginForm", formModel) {
             
             private static final long serialVersionUID = 1L;
 
@@ -44,10 +44,8 @@ public class LoginFormPanel extends Panel {
                 super.onSubmit();
 
                 // Login
-                boolean authResult = CurrentAuthenticatedWebSession.get().signIn(
-                        properties.getString("username"), properties.getString("password"));
-
-                if (authResult) {
+                boolean result = AuthUtils.signIn(properties.getString("username"), properties.getString("password"));
+                if (result) {
                     continueToOriginalDestination();
                 }
             }
