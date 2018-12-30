@@ -30,7 +30,7 @@ public class Post extends DefaultEntity {
 
     @Nonnull
     @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100000)
     @EntityPropertyDesc(type = EntityPropertyType.LONG_TEXT, optional = true)
     public String getContent() {
         return content;

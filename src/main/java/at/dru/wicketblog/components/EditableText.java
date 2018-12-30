@@ -1,18 +1,19 @@
 package at.dru.wicketblog.components;
 
 
-import at.dru.wicketblog.model.DefaultEntity;
-import at.dru.wicketblog.wicket.AuthUtils;
+import javax.annotation.Nonnull;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
-import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.basic.MultiLineLabel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 
-import javax.annotation.Nonnull;
+import at.dru.wicketblog.model.DefaultEntity;
+import at.dru.wicketblog.wicket.AuthUtils;
 
 public class EditableText<T, E extends DefaultEntity> extends Panel {
 
@@ -63,7 +64,7 @@ public class EditableText<T, E extends DefaultEntity> extends Panel {
                 }
             };
         } else {
-            viewEdit = new Label("viewEdit", formModel);
+            viewEdit = new MultiLineLabel("viewEdit", formModel);
         }
 
         viewEdit.setRenderBodyOnly(true);

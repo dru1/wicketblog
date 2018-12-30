@@ -2,6 +2,7 @@ package at.dru.wicketblog.components;
 
 import at.dru.wicketblog.model.Account;
 import at.dru.wicketblog.model.AccountRepository;
+import at.dru.wicketblog.wicket.AuthUtils;
 import at.dru.wicketblog.wicket.CurrentAuthenticatedWebSession;
 import java.util.Optional;
 
@@ -32,7 +33,7 @@ public class AccountInfoPanel extends Panel {
     protected void onInitialize() {
         super.onInitialize();
 
-        add(new WebMarkupContainer("accountInfo") {
+        add(new WebMarkupContainer("logoutPanel") {
 
             private static final long serialVersionUID = 1L;
 
@@ -40,7 +41,7 @@ public class AccountInfoPanel extends Panel {
             protected void onInitialize() {
                 super.onInitialize();
 
-                add(new Label("accountInfoLink", new LoadableDetachableModel<String>() {
+                add(new Label("accountInfoText", new LoadableDetachableModel<String>() {
 
                     private static final long serialVersionUID = 1L;
 
@@ -52,21 +53,6 @@ public class AccountInfoPanel extends Panel {
                             .orElse(StringUtils.EMPTY);
                     }
                 }));
-            }
-
-            @Override
-            public boolean isVisible() {
-                return isSignedIn();
-            }
-        });
-
-        add(new WebMarkupContainer("signOut") {
-
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            protected void onInitialize() {
-                super.onInitialize();
 
                 add(new Link<String>("signOutLink") {
 
@@ -76,6 +62,26 @@ public class AccountInfoPanel extends Panel {
                     public void onClick() {
                         CurrentAuthenticatedWebSession.get().invalidate();
                         setResponsePage(getApplication().getHomePage());
+                    }
+                });
+
+                add(new WebMarkupContainer("adminMenuOpener") {
+
+                    private static final long serialVersionUID = 1L;
+        
+                    @Override
+                    public boolean isVisible() {
+                        return AuthUtils.isAdmin();
+                    }
+                });
+
+                add(new WebMarkupContainer("adminMenu") {
+                    
+                    private static final long serialVersionUID = 1L;
+        
+                    @Override
+                    public boolean isVisible() {
+                        return AuthUtils.isAdmin();
                     }
                 });
             }

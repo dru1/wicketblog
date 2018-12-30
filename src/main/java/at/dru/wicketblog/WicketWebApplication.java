@@ -4,14 +4,19 @@ package at.dru.wicketblog;
 import at.dru.wicketblog.pages.*;
 import at.dru.wicketblog.wicket.CurrentAuthenticatedWebSession;
 import at.dru.wicketblog.wicket.MessageSourceResourceLoader;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import java.time.ZonedDateTime;
+
+import javax.annotation.Nonnull;
+
 import org.apache.wicket.Page;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -23,8 +28,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.util.Date;
-
 @Configuration
 @Component
 @ComponentScan
@@ -33,9 +36,9 @@ import java.util.Date;
 @EnableAutoConfiguration
 public class WicketWebApplication extends AuthenticatedWebApplication {
 
-    private static final Log LOG = LogFactory.getLog(WicketWebApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(WicketWebApplication.class);
 
-    private final Date startup;
+    private final ZonedDateTime startup;
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -47,7 +50,7 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
     private RuntimeConfigurationType runtimeType;
 
     public WicketWebApplication() {
-        startup = new Date();
+        startup = ZonedDateTime.now();
     }
 
     @Override
@@ -55,10 +58,12 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
         return HomePage.class;
     }
 
-    public Date getStartup() {
+    @Nonnull
+    public ZonedDateTime getStartup() {
         return startup;
     }
 
+    @Nonnull
     public String getAppName() {
         return appName;
     }
@@ -74,13 +79,12 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
 
         getMarkupSettings().setDefaultMarkupEncoding("UTF-8");
 
-
         mountPage("/login", LoginPage.class);
         mountPage("/setup", SetupPage.class);
         mountPage("/admin/posts", AdminPostPage.class);
         mountPage("/admin/posts/categories", AdminPostCategoryPage.class);
 
-        LOG.info("Application created at " + startup);
+        logger.info("Application created at " + startup);
     }
 
     @Override
