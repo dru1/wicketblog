@@ -46,6 +46,12 @@ public class AccountService extends AbstractEntityService<Account> {
         accountRepository.save(entity);
     }
 
+    @Nullable
+    @Override
+    public Account findByEntityId(@Nonnull Long entityId) {
+        return accountRepository.findById(entityId).orElse(null);
+    }
+
     @Nonnull
     @Override
     public Iterable<Account> findAll() {

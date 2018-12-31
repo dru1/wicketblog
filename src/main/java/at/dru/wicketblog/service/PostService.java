@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 @Service
 public class PostService extends AbstractEntityService<Post> {
@@ -22,6 +23,12 @@ public class PostService extends AbstractEntityService<Post> {
     @Override
     public void saveEntity(@Nonnull Post entity) {
         postRepository.save(entity);
+    }
+
+    @Nullable
+    @Override
+    public Post findByEntityId(@Nonnull Long entityId) {
+        return postRepository.findById(entityId).orElse(null);
     }
 
     @Nonnull

@@ -2,32 +2,33 @@ package at.dru.wicketblog.wicket.model;
 
 import at.dru.wicketblog.model.DefaultEntity;
 import at.dru.wicketblog.service.EntityServiceRegistry;
-import com.google.common.collect.ImmutableList;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.springframework.util.Assert;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
-public class EntityListModel<E extends DefaultEntity> extends LoadableDetachableModel<List<E>> {
-
-    private static final long serialVersionUID = 1L;
+public class EntityModel<E extends DefaultEntity> extends LoadableDetachableModel<E> {
 
     @SpringBean
     private EntityServiceRegistry entityServiceRegistry;
 
     private final Class<E> entityClass;
+    private final Long entityId;
 
-    public EntityListModel(@Nonnull Class<E> entityClass) {
+    public EntityModel(@Nonnull E entity, @Nonnull Class<E> entityClass) {
         Injector.get().inject(this);
 
+        Assert.notNull(entity.getId(), "The entity must have an id.");
+
         this.entityClass = entityClass;
+        this.entityId = entity.getId();
     }
 
     @Override
-    protected List<E> load() {
-        return ImmutableList.copyOf(entityServiceRegistry.forClass(entityClass).findAll());
+    protected E load() {
+        return entityServiceRegistry.forClass(entityClass).findByEntityId(entityId);
     }
 
 }
