@@ -3,9 +3,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch)-WicketWebApplication<wicketblog>",
+            "name": "Debug (Launch)",
             "request": "launch",
-            "mainClass": "at.dru.wicketblog.WicketWebApplication",
+            "mainClass": "at.dru.wicketblog.WebApplication",
             "projectName": "wicketblog"
         }
     ]
