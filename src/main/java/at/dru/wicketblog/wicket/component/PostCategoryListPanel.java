@@ -1,22 +1,14 @@
 package at.dru.wicketblog.wicket.component;
 
 import at.dru.wicketblog.model.PostCategory;
-import at.dru.wicketblog.model.PostCategoryRepository;
-import com.google.common.collect.Lists;
+import at.dru.wicketblog.wicket.model.EntityListModel;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.spring.injection.annot.SpringBean;
-
-import java.util.List;
 
 public class PostCategoryListPanel extends ListPanel<PostCategory> {
 
     private static final long serialVersionUID = 1L;
-
-    @SpringBean
-    private PostCategoryRepository postCategoryRepository;
 
     public PostCategoryListPanel(String id) {
         super(id, PostCategory.class);
@@ -26,15 +18,7 @@ public class PostCategoryListPanel extends ListPanel<PostCategory> {
     protected void onInitialize() {
         super.onInitialize();
 
-        add(new ListView<PostCategory>("categories", new LoadableDetachableModel<List<PostCategory>>() {
-
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            protected List<PostCategory> load() {
-                return Lists.newArrayList(postCategoryRepository.findAll());
-            }
-        }) {
+        add(new ListView<PostCategory>("categories", new EntityListModel<>(PostCategory.class)) {
 
             private static final long serialVersionUID = 1L;
 
@@ -45,7 +29,7 @@ public class PostCategoryListPanel extends ListPanel<PostCategory> {
                 item.add(new EditableText<>("iconClass", new PropertyModel<>(item.getModel(), "iconClass"), FieldType.TEXT_FIELD, PostCategory.class));
                 item.add(new EditableText<>("backgroundClass", new PropertyModel<>(item.getModel(), "backgroundClass"), FieldType.TEXT_FIELD, PostCategory.class));
             }
-            
+
         });
     }
 

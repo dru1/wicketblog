@@ -1,14 +1,9 @@
 package at.dru.wicketblog;
 
 
+import at.dru.wicketblog.wicket.i18n.MessageSourceResourceLoader;
 import at.dru.wicketblog.wicket.page.*;
 import at.dru.wicketblog.wicket.security.CurrentAuthenticatedWebSession;
-import at.dru.wicketblog.wicket.i18n.MessageSourceResourceLoader;
-
-import java.time.ZonedDateTime;
-
-import javax.annotation.Nonnull;
-
 import org.apache.wicket.Page;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
@@ -28,15 +23,18 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.annotation.Nonnull;
+import java.time.ZonedDateTime;
+
 @Configuration
 @Component
 @ComponentScan
 @EnableScheduling
 @EnableTransactionManagement
 @EnableAutoConfiguration
-public class WicketWebApplication extends AuthenticatedWebApplication {
+public class WebApplication extends AuthenticatedWebApplication {
 
-    private static final Logger logger = LoggerFactory.getLogger(WicketWebApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(WebApplication.class);
 
     private final ZonedDateTime startup;
 
@@ -49,7 +47,7 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
     @Value("${application.runtimeType}")
     private RuntimeConfigurationType runtimeType;
 
-    public WicketWebApplication() {
+    public WebApplication() {
         startup = ZonedDateTime.now();
     }
 
@@ -72,8 +70,7 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
     protected void init() {
         super.init();
 
-        getComponentInstantiationListeners().add(
-                new SpringComponentInjector(this, applicationContext));
+        getComponentInstantiationListeners().add(new SpringComponentInjector(this, applicationContext));
 
         getResourceSettings().getStringResourceLoaders().add(new MessageSourceResourceLoader());
 
@@ -102,13 +99,8 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
         return LoginPage.class;
     }
 
-    /**
-     * simple run!
-     *
-     * @param args
-     */
     public static void main(String[] args) {
-        SpringApplication.run(WicketWebApplication.class, args);
+        SpringApplication.run(WebApplication.class, args);
     }
 
 

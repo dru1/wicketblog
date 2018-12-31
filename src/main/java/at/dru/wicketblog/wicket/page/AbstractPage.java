@@ -1,6 +1,6 @@
 package at.dru.wicketblog.wicket.page;
 
-import at.dru.wicketblog.WicketWebApplication;
+import at.dru.wicketblog.WebApplication;
 import at.dru.wicketblog.wicket.component.BootstrapFeedbackPanel;
 import at.dru.wicketblog.wicket.component.DebugInfoPanel;
 import at.dru.wicketblog.wicket.component.NavigationPanel;
@@ -17,7 +17,7 @@ public abstract class AbstractPage extends WebPage {
     private static final long serialVersionUID = 1L;
     
     @SpringBean
-    protected WicketWebApplication wicketWebApplication;
+    protected WebApplication webApplication;
 
     /**
      * {@inheritDoc}
@@ -43,7 +43,7 @@ public abstract class AbstractPage extends WebPage {
     }
 
     protected String getWindowTitle() {
-        return getPageTitle() + " - " + wicketWebApplication.getAppName();
+        return getPageTitle() + " - " + webApplication.getAppName();
     }
 
     protected abstract String getPageTitle();

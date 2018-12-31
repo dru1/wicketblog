@@ -13,7 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>at.dru.wicketblog.WicketWebApplication</start-class>
+        <start-class>at.dru.wicketblog.WebApplication</start-class>
         <java.version>1.8</java.version>
         <wicket.version>8.2.0</wicket.version>
         <findbugs.version>3.0.2</findbugs.version>
@@ -99,6 +99,10 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+        </dependency>
 
         <!-- common -->
 
@@ -136,6 +140,9 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                    <compilerArguments>
+                        <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+                    </compilerArguments>
                 </configuration>
             </plugin>
         </plugins>

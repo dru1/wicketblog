@@ -2,26 +2,30 @@ package at.dru.wicketblog.wicket.component;
 
 import at.dru.wicketblog.model.Post;
 import at.dru.wicketblog.model.PostCategory;
-import at.dru.wicketblog.wicket.builder.EntityFormBuilder;
+import at.dru.wicketblog.model.Post_;
+import at.dru.wicketblog.wicket.build.EntityFormComposer;
+import at.dru.wicketblog.wicket.model.EntityListModel;
 import org.apache.wicket.model.IModel;
 
-public class PostFormPanel extends FormPanel<Post> {
+import javax.annotation.Nonnull;
+
+public class PostFormPanel extends EntityFormPanel<Post> {
 
     private static final long serialVersionUID = 1L;
 
-    public PostFormPanel(String id, IModel<Post> model) {
+    public PostFormPanel(@Nonnull String id, @Nonnull IModel<Post> model) {
         super(id, model, Post.class);
+
         setFormType(FormType.HORIZONTAL);
     }
 
     @Override
-    protected void onInitialize() {
-        super.onInitialize();
+    protected void composeForm(@Nonnull EntityForm<Post> entityForm) {
+        super.composeForm(entityForm);
 
-        new EntityFormBuilder<>(entityClass, formModel)
-                .withTextField("title", FieldType.TEXT_FIELD)
-                .withTextField("content", FieldType.TEXT_AREA)
-                .withSingleChoice("postCategory", PostCategory.class)
-                .build(entityForm);
+        new EntityFormComposer<>(entityForm)
+                .textField(Post_.title, FieldType.TEXT_FIELD)
+                .textField(Post_.content, FieldType.TEXT_AREA)
+                .entityChoice(Post_.postCategory, new EntityListModel<>(PostCategory.class));
     }
 }

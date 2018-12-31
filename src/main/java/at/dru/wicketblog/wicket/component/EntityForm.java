@@ -15,14 +15,19 @@ public class EntityForm<T extends DefaultEntity> extends Form<T> {
     @SpringBean
     protected EntityServiceRegistry entityServiceRegistry;
 
-    protected final Class<T> entityClass;
+    private final Class<T> entityClass;
+    private final IModel<T> formModel;
 
-    protected final IModel<T> formModel;
-
-    public EntityForm(String id, IModel<T> model, @Nonnull Class<T> entityClass) {
+    public EntityForm(@Nonnull String id, @Nonnull IModel<T> model, @Nonnull Class<T> entityClass) {
         super(id, model);
+
         this.entityClass = entityClass;
         this.formModel = model;
+    }
+
+    @Nonnull
+    public Class<T> getEntityClass() {
+        return entityClass;
     }
 
     @Override

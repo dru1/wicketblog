@@ -9,7 +9,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = WicketWebApplication.class)
+@ContextConfiguration(classes = WebApplication.class)
 @WebAppConfiguration
 public class ApplicationTests {
 

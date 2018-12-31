@@ -1,16 +1,15 @@
 package at.dru.wicketblog.wicket.component;
 
-import org.apache.wicket.markup.ComponentTag;
+import at.dru.wicketblog.model.Account_;
+import at.dru.wicketblog.wicket.build.FormComposer;
+import at.dru.wicketblog.wicket.model.MetaModel;
+import at.dru.wicketblog.wicket.security.AuthUtils;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.util.value.ValueMap;
+import org.apache.wicket.model.ChainingModel;
 
-import at.dru.wicketblog.model.Account;
-import at.dru.wicketblog.wicket.security.AuthUtils;
-import at.dru.wicketblog.wicket.builder.FormBuilder;
-import at.dru.wicketblog.wicket.model.MetaModel;
+import javax.annotation.Nonnull;
 
 public class LoginFormPanel extends Panel {
 
@@ -18,12 +17,17 @@ public class LoginFormPanel extends Panel {
 
     private FormType formType;
 
-    public LoginFormPanel(String id) {
+    private transient String username;
+    private transient String password;
+
+    public LoginFormPanel(@Nonnull String id) {
         super(id);
+
         this.formType = FormType.DEFAULT;
     }
 
-    public LoginFormPanel setFormType(FormType formType) {
+    @Nonnull
+    public LoginFormPanel setFormType(@Nonnull FormType formType) {
         this.formType = formType;
         return this;
     }
@@ -32,11 +36,8 @@ public class LoginFormPanel extends Panel {
     protected void onInitialize() {
         super.onInitialize();
 
-        final ValueMap properties = new ValueMap();
+        Form<Void> form = new Form<Void>("loginForm", new ChainingModel<>(this)) {
 
-        IModel<ValueMap> formModel = Model.of(properties);
-        Form<ValueMap> form = new Form<ValueMap>("loginForm", formModel) {
-            
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -44,28 +45,25 @@ public class LoginFormPanel extends Panel {
                 super.onSubmit();
 
                 // Login
-                boolean result = AuthUtils.signIn(properties.getString("username"), properties.getString("password"));
+                boolean result = AuthUtils.signIn(username, password);
                 if (result) {
                     continueToOriginalDestination();
                 }
             }
-
-            @Override
-            protected void onComponentTag(ComponentTag tag) {
-                super.onComponentTag(tag);
-
-                tag.put("class", getFormCssClass());
-            }
         };
-
-        new FormBuilder<>(formModel)
-                .withTextField("username", FieldType.TEXT_FIELD, new MetaModel<>(Account.class, "username"))
-                .withTextField("password", FieldType.PASSWORD_FIELD, new MetaModel<>(Account.class, "password"))
-                .build(form);
-
+        composeForm(form);
         add(form);
     }
 
+    protected void composeForm(@Nonnull Form<Void> loginForm) {
+        loginForm.add(new AttributeAppender("class", getFormCssClass(), " "));
+
+        new FormComposer<>(loginForm)
+                .textField("username", FieldType.TEXT_FIELD, new MetaModel<>(Account_.login))
+                .textField("password", FieldType.PASSWORD_FIELD, new MetaModel<>(Account_.password));
+    }
+
+    @Nonnull
     protected String getFormCssClass() {
         return formType.getCssClass();
     }

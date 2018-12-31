@@ -1,10 +1,10 @@
 package at.dru.wicketblog.wicket.page;
 
-import at.dru.wicketblog.wicket.component.FormPanel;
+import at.dru.wicketblog.model.Post;
+import at.dru.wicketblog.wicket.component.EntityFormPanel;
 import at.dru.wicketblog.wicket.component.ListPanel;
 import at.dru.wicketblog.wicket.component.PostFormPanel;
 import at.dru.wicketblog.wicket.component.PostListPanel;
-import at.dru.wicketblog.model.Post;
 import org.apache.wicket.model.IModel;
 
 import javax.annotation.Nonnull;
@@ -26,7 +26,7 @@ public class AdminPostPage extends AbstractAdminFormPage<Post> {
     }
 
     @Override
-    protected FormPanel<Post> getFormPanel(@Nonnull String wicketId, @Nonnull IModel<Post> formModel) {
+    protected EntityFormPanel<Post> getFormPanel(@Nonnull String wicketId, @Nonnull IModel<Post> formModel) {
         return new PostFormPanel(wicketId, formModel);
     }
 

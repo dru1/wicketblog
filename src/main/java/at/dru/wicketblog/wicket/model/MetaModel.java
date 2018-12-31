@@ -6,6 +6,9 @@ import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import javax.annotation.Nonnull;
+import javax.persistence.metamodel.Attribute;
+
 public class MetaModel<T extends DefaultEntity> implements IModel<String> {
 
     private static final long serialVersionUID = 1L;
@@ -21,10 +24,15 @@ public class MetaModel<T extends DefaultEntity> implements IModel<String> {
 
     private boolean attached = false;
 
-    public MetaModel(Class<T> entityClass, String property) {
+    public MetaModel(@Nonnull Attribute<T, ?> jpaAttribute) {
+        this(jpaAttribute.getDeclaringType().getJavaType(), jpaAttribute.getName());
+    }
+
+    public MetaModel(@Nonnull Class<T> entityClass, @Nonnull String property) {
+        Injector.get().inject(this);
+
         this.entityClass = entityClass;
         this.property = property;
-        Injector.get().inject(this);
     }
 
     @Override
