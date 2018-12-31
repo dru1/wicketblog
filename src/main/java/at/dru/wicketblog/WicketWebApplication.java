@@ -1,9 +1,9 @@
 package at.dru.wicketblog;
 
 
-import at.dru.wicketblog.pages.*;
-import at.dru.wicketblog.wicket.CurrentAuthenticatedWebSession;
-import at.dru.wicketblog.wicket.MessageSourceResourceLoader;
+import at.dru.wicketblog.wicket.page.*;
+import at.dru.wicketblog.wicket.security.CurrentAuthenticatedWebSession;
+import at.dru.wicketblog.wicket.i18n.MessageSourceResourceLoader;
 
 import java.time.ZonedDateTime;
 
