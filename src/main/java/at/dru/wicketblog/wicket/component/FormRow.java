@@ -1,12 +1,11 @@
 package at.dru.wicketblog.wicket.component;
 
-import org.apache.wicket.Component;
+import javax.annotation.Nonnull;
+
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.border.Border;
 import org.apache.wicket.markup.html.form.ILabelProvider;
 import org.apache.wicket.model.IModel;
-
-import javax.annotation.Nonnull;
 
 public class FormRow extends Border implements ILabelProvider<String> {
 

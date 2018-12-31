@@ -16,6 +16,8 @@ import java.util.stream.Stream;
 
 public class ShowdownBehavior extends Behavior {
 
+    private static final long serialVersionUID = 1L;
+
     private final LinkedHashMap<String, String> options = new LinkedHashMap<>();
 
     private static final UrlResourceReference REF = new UrlResourceReference(

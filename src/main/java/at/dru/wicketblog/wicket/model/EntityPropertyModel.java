@@ -9,6 +9,8 @@ import javax.persistence.metamodel.Attribute;
 
 public class EntityPropertyModel<P, E extends DefaultEntity> extends PropertyModel<P> {
 
+    private static final long serialVersionUID = 1L;
+    
     private final IModel<E> entityModel;
     private final Class<E> entityClass;
 

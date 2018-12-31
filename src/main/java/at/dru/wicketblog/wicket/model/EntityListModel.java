@@ -12,6 +12,8 @@ import java.util.List;
 
 public class EntityListModel<E extends DefaultEntity> extends LoadableDetachableModel<List<E>> {
 
+    private static final long serialVersionUID = 1L;
+
     @SpringBean
     private EntityServiceRegistry entityServiceRegistry;
 
