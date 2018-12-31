@@ -5,7 +5,6 @@ import at.dru.wicketblog.wicket.component.EntityForm;
 import at.dru.wicketblog.wicket.component.FieldType;
 import at.dru.wicketblog.wicket.component.FormRow;
 import at.dru.wicketblog.wicket.model.MetaModel;
-import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
@@ -20,8 +19,6 @@ public final class EntityFormComposer<E extends DefaultEntity> {
     private final FormComposer<E> delegate;
 
     public EntityFormComposer(@Nonnull EntityForm<E> entityForm) {
-        Injector.get().inject(this);
-
         this.entityForm = entityForm;
         this.delegate = new FormComposer<>(entityForm);
     }
@@ -30,7 +27,6 @@ public final class EntityFormComposer<E extends DefaultEntity> {
     public EntityFormComposer<E> textField(@Nonnull Attribute<E, ?> jpaAttribute, @Nonnull FieldType fieldType) {
         return textField(jpaAttribute.getName(), fieldType);
     }
-
 
     @Nonnull
     public EntityFormComposer<E> textField(@Nonnull String fieldName, @Nonnull FieldType fieldType) {
