@@ -9,40 +9,30 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.util.Assert;
 
 import javax.annotation.Nonnull;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Iterator;
 
 public class EntityDataProvider<E extends DefaultEntity> implements IDataProvider<E> {
 
-    public static final int DEFAULT_PAGE_SIZE = 10;
+    private static final int MIN_PAGE_SIZE = 10;
 
     private final Class<E> entityClass;
     private final SerializableFunction<PageRequest, Page<E>> pageFunction;
     private final int pageSize;
 
-    public EntityDataProvider(@Nonnull Class<E> entityClass,
-                              @Nonnull SerializableFunction<PageRequest, Page<E>> pageFunction) {
-        this(entityClass, pageFunction, DEFAULT_PAGE_SIZE);
-    }
-
-    public EntityDataProvider(@Nonnull Class<E> entityClass,
-                              @Nonnull SerializableFunction<PageRequest, Page<E>> pageFunction,
-                              int pageSize) {
+    public EntityDataProvider(@Nonnull Class<E> entityClass, @Nonnull SerializableFunction<PageRequest, Page<E>> pageFunction, int pageSize) {
         this.entityClass = entityClass;
         this.pageFunction = pageFunction;
-        this.pageSize = pageSize;
+        this.pageSize = Math.max(pageSize, MIN_PAGE_SIZE);
     }
 
     @Override
     public Iterator<? extends E> iterator(long first, long count) {
-        Assert.isTrue(count <= pageSize, "The requested count must not exceed the page size.");
-        return getPage(first).iterator();
+        return getPage(first, count).iterator();
     }
 
     @Override
     public long size() {
-        return getPage(0).getTotalElements();
+        return getPage(0, pageSize).getTotalElements();
     }
 
     @Override
@@ -51,15 +41,11 @@ public class EntityDataProvider<E extends DefaultEntity> implements IDataProvide
     }
 
     @Nonnull
-    private Page<E> getPage(long first) {
-        int pageNumber = getPageNumber(first);
+    private Page<E> getPage(long first, long count) {
+        Assert.isTrue(count <= pageSize, "The requested count must not exceed the page size.");
+        Assert.isTrue(first % pageSize == 0, "The offset must be a multiple of: " + pageSize);
+        int pageNumber = Math.toIntExact(first / pageSize);
         return pageFunction.apply(PageRequest.of(pageNumber, pageSize));
-    }
-
-    private int getPageNumber(long first) {
-        return BigDecimal.valueOf(first)
-                .divide(BigDecimal.valueOf(pageSize), RoundingMode.FLOOR)
-                .intValue();
     }
 
 }

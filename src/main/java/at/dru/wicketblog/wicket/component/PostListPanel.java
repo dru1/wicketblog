@@ -3,8 +3,10 @@ package at.dru.wicketblog.wicket.component;
 import at.dru.wicketblog.model.Post;
 import at.dru.wicketblog.model.PostRepository;
 import at.dru.wicketblog.model.Post_;
+import at.dru.wicketblog.service.DefaultsService;
 import at.dru.wicketblog.wicket.model.EntityDataProvider;
 import at.dru.wicketblog.wicket.model.EntityPropertyModel;
+import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -16,6 +18,9 @@ public class PostListPanel extends ListPanel<Post> {
     @SpringBean
     private PostRepository postRepository;
 
+    @SpringBean
+    private DefaultsService defaultsService;
+
     public PostListPanel(String id) {
         super(id, Post.class);
     }
@@ -24,7 +29,9 @@ public class PostListPanel extends ListPanel<Post> {
     protected void onInitialize() {
         super.onInitialize();
 
-        add(new DataView<Post>("posts", new EntityDataProvider<>(Post.class, postRepository::findAllByOrderByModifiedDesc)) {
+        int pageSize = defaultsService.getPageSize();
+        EntityDataProvider<Post> postsDataProvider = new EntityDataProvider<>(Post.class, postRepository::findAllByOrderByModifiedDesc, pageSize);
+        DataView<Post> postsDataView = new DataView<Post>("posts", postsDataProvider, pageSize) {
 
             private static final long serialVersionUID = 1L;
 
@@ -37,6 +44,9 @@ public class PostListPanel extends ListPanel<Post> {
                         .cssClasses("blog-content")
                         .enableMarkdown(true));
             }
-        });
+        };
+
+        PagingNavigator postsPagingNavigator = new PagingNavigator("paging", postsDataView);
+        queue(postsDataView, postsPagingNavigator);
     }
 }
