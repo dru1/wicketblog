@@ -6,7 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 @SpringBootTest
-@ContextConfiguration(classes = WebApplication.class)
+@ContextConfiguration(classes = WicketWebApplication.class)
 @WebAppConfiguration
 public class ApplicationTests {
 
