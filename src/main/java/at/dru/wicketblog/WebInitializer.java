@@ -21,7 +21,7 @@ public class WebInitializer implements ServletContextInitializer {
     public void onStartup(ServletContext servletContext) {
         FilterRegistration wicketFilter = servletContext.addFilter("wicket-filter", WicketFilter.class);
         wicketFilter.setInitParameter(WicketFilter.APP_FACT_PARAM, SpringWebApplicationFactory.class.getName());
-        wicketFilter.setInitParameter(PARAM_APP_BEAN, "webApplication");
+        wicketFilter.setInitParameter(PARAM_APP_BEAN, "wicketWebApplication");
         wicketFilter.setInitParameter(WicketFilter.FILTER_MAPPING_PARAM, "/*");
         wicketFilter.addMappingForUrlPatterns(null, false, "/*");
         logger.info("Wicket Servlet Filter registered.");

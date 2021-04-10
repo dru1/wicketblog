@@ -26,7 +26,7 @@ public abstract class AbstractAuthenticatedPage extends AbstractPage {
     private void checkPrivileges() {
         if (!hasRequiredPrivileges()) {
             // throws an exception
-            webApplication.restartResponseAtSignInPage();
+            wicketWebApplication.restartResponseAtSignInPage();
         }
     }
 
@@ -71,13 +71,13 @@ public abstract class AbstractAuthenticatedPage extends AbstractPage {
         Long accountId = CurrentAuthenticatedWebSession.get().getAccountId();
         if (accountId == null) {
             // throws an exception
-            webApplication.restartResponseAtSignInPage();
+            wicketWebApplication.restartResponseAtSignInPage();
         }
 
         Account account = accountRepository.findById(accountId).orElse(null);
         if (account == null) {
             // throws an exception
-            webApplication.restartResponseAtSignInPage();
+            wicketWebApplication.restartResponseAtSignInPage();
         }
 
         return account;

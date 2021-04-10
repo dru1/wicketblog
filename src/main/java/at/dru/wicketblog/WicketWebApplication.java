@@ -1,6 +1,5 @@
 package at.dru.wicketblog;
 
-
 import at.dru.wicketblog.wicket.i18n.MessageSourceResourceLoader;
 import at.dru.wicketblog.wicket.page.*;
 import at.dru.wicketblog.wicket.security.CurrentAuthenticatedWebSession;
@@ -32,9 +31,9 @@ import java.time.ZonedDateTime;
 @EnableScheduling
 @EnableTransactionManagement
 @EnableAutoConfiguration
-public class WebApplication extends AuthenticatedWebApplication {
+public class WicketWebApplication extends AuthenticatedWebApplication {
 
-    private static final Logger logger = LoggerFactory.getLogger(WebApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(WicketWebApplication.class);
 
     private final ZonedDateTime startup;
 
@@ -47,7 +46,7 @@ public class WebApplication extends AuthenticatedWebApplication {
     @Value("${application.runtimeType}")
     private RuntimeConfigurationType runtimeType;
 
-    public WebApplication() {
+    public WicketWebApplication() {
         startup = ZonedDateTime.now();
     }
 
@@ -71,9 +70,7 @@ public class WebApplication extends AuthenticatedWebApplication {
         super.init();
 
         getComponentInstantiationListeners().add(new SpringComponentInjector(this, applicationContext));
-
         getResourceSettings().getStringResourceLoaders().add(new MessageSourceResourceLoader());
-
         getMarkupSettings().setDefaultMarkupEncoding("UTF-8");
 
         mountPage("/login", LoginPage.class);
@@ -100,8 +97,7 @@ public class WebApplication extends AuthenticatedWebApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(WebApplication.class, args);
+        SpringApplication.run(WicketWebApplication.class, args);
     }
-
 
 }

@@ -66,5 +66,5 @@ tasks.withType<Test> {
 }
 
 tasks.bootRun {
-    main = "at.dru.wicketblog.WebApplication"
+    main = "at.dru.wicketblog.WicketWebApplication"
 }
