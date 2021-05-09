@@ -2,7 +2,7 @@ plugins {
     java
     id("maven-publish")
     war
-    id("org.springframework.boot") version "2.4.4"
+    id("org.springframework.boot") version "2.4.5"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
@@ -30,8 +30,8 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.12.0")
 
     // Databases
-    runtimeOnly("org.hsqldb:hsqldb:2.5.1")
-    runtimeOnly("mysql:mysql-connector-java:8.0.23")
+    runtimeOnly("org.hsqldb:hsqldb:2.5.2")
+    runtimeOnly("mysql:mysql-connector-java:8.0.24")
 
     // Tests
     testImplementation("org.springframework.boot:spring-boot-starter-test")
