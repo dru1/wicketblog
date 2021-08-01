@@ -5,7 +5,7 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 
 @Entity
-public class PostCategory extends DefaultEntity {
+public class PostCategory extends AbstractEntity {
 
     private String name;
 

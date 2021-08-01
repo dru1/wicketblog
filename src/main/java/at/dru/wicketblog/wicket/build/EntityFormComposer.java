@@ -1,6 +1,6 @@
 package at.dru.wicketblog.wicket.build;
 
-import at.dru.wicketblog.model.DefaultEntity;
+import at.dru.wicketblog.model.AbstractEntity;
 import at.dru.wicketblog.wicket.component.EntityForm;
 import at.dru.wicketblog.wicket.component.FieldType;
 import at.dru.wicketblog.wicket.component.FormRow;
@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
-public final class EntityFormComposer<E extends DefaultEntity> {
+public final class EntityFormComposer<E extends AbstractEntity> {
 
     private final EntityForm<E> entityForm;
     private final FormComposer<E> delegate;
@@ -35,12 +35,12 @@ public final class EntityFormComposer<E extends DefaultEntity> {
     }
 
     @Nonnull
-    public <C extends DefaultEntity> EntityFormComposer<E> entityChoice(@Nonnull Attribute<E, ?> jpaAttribute, @Nonnull IModel<List<C>> choicesModel) {
+    public <C extends AbstractEntity> EntityFormComposer<E> entityChoice(@Nonnull Attribute<E, ?> jpaAttribute, @Nonnull IModel<List<C>> choicesModel) {
         return entityChoice(jpaAttribute.getName(), choicesModel);
     }
 
     @Nonnull
-    public <C extends DefaultEntity> EntityFormComposer<E> entityChoice(@Nonnull String fieldName, @Nonnull IModel<List<C>> choicesModel) {
+    public <C extends AbstractEntity> EntityFormComposer<E> entityChoice(@Nonnull String fieldName, @Nonnull IModel<List<C>> choicesModel) {
         PropertyModel<C> fieldModel = new PropertyModel<>(entityForm.getModel(), fieldName);
         MetaModel<E> labelModel = new MetaModel<>(entityForm.getEntityClass(), fieldName);
         FormRow formRow = new FormRow(fieldName, labelModel);

@@ -1,6 +1,6 @@
 package at.dru.wicketblog.wicket.page;
 
-import at.dru.wicketblog.model.DefaultEntity;
+import at.dru.wicketblog.model.AbstractEntity;
 import at.dru.wicketblog.wicket.component.EntityFormPanel;
 import at.dru.wicketblog.wicket.component.ListPanel;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public abstract class AbstractAdminFormPage<T extends DefaultEntity> extends AbstractAuthenticatedPage {
+public abstract class AbstractAdminFormPage<T extends AbstractEntity> extends AbstractAuthenticatedPage {
 
     private static final long serialVersionUID = 1L;
 

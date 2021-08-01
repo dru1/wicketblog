@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EntityModelService implements InitializingBean {
 
-    Logger logger = LoggerFactory.getLogger(EntityModelService.class);
+    private static final Logger logger = LoggerFactory.getLogger(EntityModelService.class);
 
     public void scanEntities() {
         BeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
@@ -28,4 +28,5 @@ public class EntityModelService implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         scanEntities();
     }
+
 }

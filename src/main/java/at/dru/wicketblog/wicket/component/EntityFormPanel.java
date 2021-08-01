@@ -1,12 +1,12 @@
 package at.dru.wicketblog.wicket.component;
 
-import at.dru.wicketblog.model.DefaultEntity;
+import at.dru.wicketblog.model.AbstractEntity;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
 import javax.annotation.Nonnull;
 
-public class EntityFormPanel<T extends DefaultEntity> extends Panel {
+public class EntityFormPanel<T extends AbstractEntity> extends Panel {
 
     private static final long serialVersionUID = 1L;
 

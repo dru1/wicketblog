@@ -1,13 +1,13 @@
 package at.dru.wicketblog.wicket.model;
 
-import at.dru.wicketblog.model.DefaultEntity;
+import at.dru.wicketblog.model.AbstractEntity;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 
 import javax.annotation.Nonnull;
 import javax.persistence.metamodel.Attribute;
 
-public class EntityPropertyModel<P, E extends DefaultEntity> extends PropertyModel<P> {
+public class EntityPropertyModel<P, E extends AbstractEntity> extends PropertyModel<P> {
 
     private static final long serialVersionUID = 1L;
     

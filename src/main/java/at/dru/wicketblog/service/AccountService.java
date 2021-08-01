@@ -57,4 +57,5 @@ public class AccountService extends AbstractEntityService<Account> {
     public Iterable<Account> findAll() {
         return accountRepository.findAll();
     }
+
 }

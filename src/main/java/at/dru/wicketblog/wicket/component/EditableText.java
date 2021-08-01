@@ -1,7 +1,7 @@
 package at.dru.wicketblog.wicket.component;
 
 
-import at.dru.wicketblog.model.DefaultEntity;
+import at.dru.wicketblog.model.AbstractEntity;
 import at.dru.wicketblog.wicket.behavior.ShowdownBehavior;
 import at.dru.wicketblog.wicket.behavior.VisibilityBehavior;
 import at.dru.wicketblog.wicket.model.EntityPropertyModel;
@@ -15,7 +15,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import javax.annotation.Nonnull;
 
-public class EditableText<T, E extends DefaultEntity> extends Panel {
+public class EditableText<T, E extends AbstractEntity> extends Panel {
 
     private static final long serialVersionUID = 1L;
 

@@ -1,6 +1,6 @@
 package at.dru.wicketblog.wicket.model;
 
-import at.dru.wicketblog.model.DefaultEntity;
+import at.dru.wicketblog.model.AbstractEntity;
 import at.dru.wicketblog.service.MetaModelService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
@@ -9,7 +9,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import javax.annotation.Nonnull;
 import javax.persistence.metamodel.Attribute;
 
-public class MetaModel<T extends DefaultEntity> implements IModel<String> {
+public class MetaModel<T extends AbstractEntity> implements IModel<String> {
 
     private static final long serialVersionUID = 1L;
 

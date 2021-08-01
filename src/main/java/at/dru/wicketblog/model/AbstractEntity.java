@@ -1,20 +1,14 @@
 package at.dru.wicketblog.model;
 
-import java.util.Date;
-
-import javax.annotation.Nonnull;
-import javax.persistence.Basic;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-
 import at.dru.wicketblog.service.EntityPropertyDesc;
 import at.dru.wicketblog.service.EntityPropertyType;
 
+import javax.annotation.Nonnull;
+import javax.persistence.*;
+import java.util.Date;
+
 @MappedSuperclass
-public abstract class DefaultEntity {
+public abstract class AbstractEntity {
 
     private Long id;
 
@@ -76,4 +70,5 @@ public abstract class DefaultEntity {
         }
         modified = new Date();
     }
+
 }

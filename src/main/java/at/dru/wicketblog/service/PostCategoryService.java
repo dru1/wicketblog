@@ -36,4 +36,5 @@ public class PostCategoryService extends AbstractEntityService<PostCategory> {
     public Iterable<PostCategory> findAll() {
         return postCategoryRepository.findAll();
     }
+
 }

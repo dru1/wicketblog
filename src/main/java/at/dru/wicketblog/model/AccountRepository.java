@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface AccountRepository extends CrudRepository<Account, Long> {
 
+    @Nonnull
     List<Account> findByLogin(@Nonnull String login);
 
 }

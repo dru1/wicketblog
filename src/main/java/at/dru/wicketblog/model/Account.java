@@ -5,7 +5,7 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 
 @Entity
-public class Account extends DefaultEntity {
+public class Account extends AbstractEntity {
 
     private String login;
 
@@ -42,4 +42,5 @@ public class Account extends DefaultEntity {
     public void setAdminUser(@Nonnull Boolean adminUser) {
         this.adminUser = adminUser;
     }
+
 }

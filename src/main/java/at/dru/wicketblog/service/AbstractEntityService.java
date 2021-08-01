@@ -12,4 +12,5 @@ public abstract class AbstractEntityService<T> implements EntityService<T>, Init
     public void afterPropertiesSet() throws Exception {
         entityServiceRegistry.registerService(this);
     }
+
 }

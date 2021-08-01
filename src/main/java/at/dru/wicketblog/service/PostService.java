@@ -36,4 +36,5 @@ public class PostService extends AbstractEntityService<Post> {
     public Iterable<Post> findAll() {
         return postRepository.findAll();
     }
+
 }

@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import javax.persistence.*;
 
 @Entity
-public class Post extends DefaultEntity {
+public class Post extends AbstractEntity {
 
     private String title;
 

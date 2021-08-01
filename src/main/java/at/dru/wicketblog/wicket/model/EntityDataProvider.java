@@ -1,6 +1,6 @@
 package at.dru.wicketblog.wicket.model;
 
-import at.dru.wicketblog.model.DefaultEntity;
+import at.dru.wicketblog.model.AbstractEntity;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 import org.danekja.java.util.function.serializable.SerializableFunction;
@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
 import javax.annotation.Nonnull;
 import java.util.Iterator;
 
-public class EntityDataProvider<E extends DefaultEntity> implements IDataProvider<E> {
+public class EntityDataProvider<E extends AbstractEntity> implements IDataProvider<E> {
 
     private static final int MIN_PAGE_SIZE = 10;
 

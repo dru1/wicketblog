@@ -1,6 +1,6 @@
 package at.dru.wicketblog.wicket.model;
 
-import at.dru.wicketblog.model.DefaultEntity;
+import at.dru.wicketblog.model.AbstractEntity;
 import at.dru.wicketblog.service.EntityServiceRegistry;
 import com.google.common.collect.ImmutableList;
 import org.apache.wicket.injection.Injector;
@@ -10,7 +10,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class EntityListModel<E extends DefaultEntity> extends LoadableDetachableModel<List<E>> {
+public class EntityListModel<E extends AbstractEntity> extends LoadableDetachableModel<List<E>> {
 
     private static final long serialVersionUID = 1L;
 
