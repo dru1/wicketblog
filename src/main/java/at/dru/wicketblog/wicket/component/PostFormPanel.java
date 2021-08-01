@@ -15,8 +15,6 @@ public class PostFormPanel extends EntityFormPanel<Post> {
 
     public PostFormPanel(@Nonnull String id, @Nonnull IModel<Post> model) {
         super(id, model, Post.class);
-
-        setFormType(FormType.HORIZONTAL);
     }
 
     @Override
@@ -28,4 +26,5 @@ public class PostFormPanel extends EntityFormPanel<Post> {
                 .textField(Post_.content, FieldType.TEXT_AREA)
                 .entityChoice(Post_.postCategory, new EntityListModel<>(PostCategory.class));
     }
+
 }

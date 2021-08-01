@@ -3,15 +3,21 @@
 <body>
 <wicket:panel>
 
-    <form wicket:id="loginForm">
+    <form wicket:id="loginForm" class="ui form">
         <div wicket:id="username">
-            <input type="text" name="username" class="form-control" wicket:id="username">
+            <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="username" wicket:id="username">
+            </div>
         </div>
         <div wicket:id="password">
-            <input type="password" name="password" class="form-control" wicket:id="password">
+            <div class="ui left icon input">
+                <i class="key icon"></i>
+                <input type="password" name="password" wicket:id="password">
+            </div>
         </div>
 
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="ui primary button">
             <wicket:message key="signIn"/>
         </button>
     </form>

@@ -3,33 +3,29 @@
 <body>
 <wicket:panel>
 
-    <nav class="nav" wicket:id="logoutPanel">
+    <div class="item right" wicket:enclosure="accountInfoText">
+        <i class="user icon"></i>
+        <span wicket:id="accountInfoText">[Account]</span>
+    </div>
 
-        <div class="nav-link text-white">
-            <i class="far fa-user"></i>
-            <span wicket:id="accountInfoText">[Account]</span>
+    <div class="ui item dropdown" wicket:id="admin">
+        Admin
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            <a class="item" href="/admin/posts/categories">Categories</a>
+            <a class="item" href="/admin/posts">Posts</a>
         </div>
+    </div>
 
-        <div class="dropdown">
-            <a class="nav-link text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                aria-expanded="false" wicket:id="adminMenuOpener">
-                <i class="fas fa-cog"></i>
-                <wicket:message key="settings"/>
-            </a>
-            <div class="dropdown-menu text-white" wicket:id="adminMenu">
-                <a class="dropdown-item" href="/admin/posts/categories">Categories</a>
-                <a class="dropdown-item" href="/admin/posts">Posts</a>
-            </div>
-        </div>
+    <a class="item" wicket:id="signOutLink">
+        <i class="sign out alternate icon"></i>
+        <wicket:message key="signOut"/>
+    </a>
 
-        <a class="nav-link text-white" wicket:id="signOutLink">
-            <i class="fas fa-sign-out-alt"></i>
-            <wicket:message key="signOut"/>
-        </a>
-
-    </nav>
-
-    <div wicket:id="loginPanel"></div>
+    <a class="item right" wicket:id="login">
+        <i class="sign in alternate icon"></i>
+        Sign In
+    </a>
 
 </wicket:panel>
 </body>

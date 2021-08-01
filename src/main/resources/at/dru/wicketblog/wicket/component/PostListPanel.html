@@ -3,20 +3,13 @@
 <body>
 <wicket:panel>
 
+    <div class="ui list">
 
-    <div class="row" wicket:id="posts">
-        <div class="col-md-12">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title" wicket:id="title">Panel title</h3>
-                </div>
-                <div class="panel-body" wicket:id="content">
-                    Panel content
-                </div>
-            </div>
-
+        <div class="item" wicket:id="posts">
+            <h3 class="header" wicket:id="title"></h3>
+            <div class="content" wicket:id="content"></div>
         </div>
+
     </div>
 
     <div class="paging" wicket:id="paging"></div>

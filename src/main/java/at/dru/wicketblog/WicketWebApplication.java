@@ -71,6 +71,7 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
 
         getComponentInstantiationListeners().add(new SpringComponentInjector(this, applicationContext));
         getResourceSettings().getStringResourceLoaders().add(new MessageSourceResourceLoader());
+        getMarkupSettings().setStripWicketTags(true);
         getMarkupSettings().setDefaultMarkupEncoding("UTF-8");
 
         mountPage("/login", LoginPage.class);

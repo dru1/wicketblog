@@ -14,6 +14,8 @@ public class NavigationPanel extends Panel {
 
     public NavigationPanel(String id) {
         super(id);
+
+        setRenderBodyOnly(true);
     }
 
     @Override
@@ -21,7 +23,7 @@ public class NavigationPanel extends Panel {
         super.onInitialize();
 
         add(new Label("appName", wicketWebApplication.getAppName()));
-        add(new AccountInfoPanel("accountInfo").setRenderBodyOnly(true));
+        add(new AccountInfoPanel("accountInfo"));
     }
 
 }

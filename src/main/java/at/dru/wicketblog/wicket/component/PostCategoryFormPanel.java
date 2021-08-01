@@ -13,8 +13,6 @@ public class PostCategoryFormPanel extends EntityFormPanel<PostCategory> {
 
     public PostCategoryFormPanel(String id, IModel<PostCategory> model) {
         super(id, model, PostCategory.class);
-
-        setFormType(FormType.HORIZONTAL);
     }
 
     @Override
@@ -27,4 +25,5 @@ public class PostCategoryFormPanel extends EntityFormPanel<PostCategory> {
                 .textField(PostCategory_.iconClass, FieldType.TEXT_FIELD)
                 .textField(PostCategory_.backgroundClass, FieldType.TEXT_FIELD);
     }
+
 }

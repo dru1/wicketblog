@@ -38,10 +38,10 @@ public class PostListPanel extends ListPanel<Post> {
             @Override
             protected void populateItem(Item<Post> item) {
                 item.add(new EditableText<>("title", new EntityPropertyModel<>(item.getModel(), Post_.title))
-                        .cssClasses("blog-title"));
+                        .cssClasses("item-title"));
                 item.add(new EditableText<>("content", new EntityPropertyModel<>(item.getModel(), Post_.content))
                         .fieldType(FieldType.TEXT_AREA)
-                        .cssClasses("blog-content")
+                        .cssClasses("item-content")
                         .enableMarkdown(true));
             }
         };
@@ -49,4 +49,5 @@ public class PostListPanel extends ListPanel<Post> {
         PagingNavigator postsPagingNavigator = new PagingNavigator("paging", postsDataView);
         queue(postsDataView, postsPagingNavigator);
     }
+
 }

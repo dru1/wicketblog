@@ -1,9 +1,9 @@
 package at.dru.wicketblog.wicket.page;
 
 import at.dru.wicketblog.WicketWebApplication;
-import at.dru.wicketblog.wicket.component.BootstrapFeedbackPanel;
 import at.dru.wicketblog.wicket.component.DebugInfoPanel;
 import at.dru.wicketblog.wicket.component.NavigationPanel;
+import at.dru.wicketblog.wicket.component.StyledFeedbackPanel;
 import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -34,7 +34,7 @@ public abstract class AbstractPage extends WebPage {
     protected void onInitialize() {
         super.onInitialize();
 
-        add(new BootstrapFeedbackPanel("feedback"));
+        add(new StyledFeedbackPanel("feedback"));
         add(new Label("windowTitle", getWindowTitle()));
         add(new Label("pageTitle", getPageTitle()));
         add(new DebugBar("debugBar"));
