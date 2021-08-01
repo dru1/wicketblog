@@ -14,11 +14,11 @@ repositories {
 
 dependencies {
     // Wicket
-    implementation("org.apache.wicket:wicket-core:8.12.0")
-    implementation("org.apache.wicket:wicket-auth-roles:8.12.0")
-    implementation("org.apache.wicket:wicket-spring:8.12.0")
-    implementation("org.apache.wicket:wicket-extensions:8.12.0")
-    implementation("org.apache.wicket:wicket-devutils:8.12.0")
+    implementation("org.apache.wicket:wicket-core:8.13.0")
+    implementation("org.apache.wicket:wicket-auth-roles:8.13.0")
+    implementation("org.apache.wicket:wicket-spring:8.13.0")
+    implementation("org.apache.wicket:wicket-extensions:8.13.0")
+    implementation("org.apache.wicket:wicket-devutils:8.13.0")
 
     // Spring
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -31,7 +31,7 @@ dependencies {
 
     // Databases
     runtimeOnly("org.hsqldb:hsqldb:2.5.2")
-    runtimeOnly("mysql:mysql-connector-java:8.0.24")
+    runtimeOnly("mysql:mysql-connector-java:8.0.25")
 
     // Tests
     testImplementation("org.springframework.boot:spring-boot-starter-test")
