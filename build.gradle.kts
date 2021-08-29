@@ -14,11 +14,11 @@ repositories {
 
 dependencies {
     // Wicket
-    implementation("org.apache.wicket:wicket-core:8.13.0")
-    implementation("org.apache.wicket:wicket-auth-roles:8.13.0")
-    implementation("org.apache.wicket:wicket-spring:8.13.0")
-    implementation("org.apache.wicket:wicket-extensions:8.13.0")
-    implementation("org.apache.wicket:wicket-devutils:8.13.0")
+    implementation("org.apache.wicket:wicket-core")
+    implementation("org.apache.wicket:wicket-auth-roles")
+    implementation("org.apache.wicket:wicket-spring")
+    implementation("org.apache.wicket:wicket-extensions")
+    implementation("org.apache.wicket:wicket-devutils")
 
     // Spring
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -38,6 +38,18 @@ dependencies {
 
     // JPA
     annotationProcessor("org.hibernate:hibernate-jpamodelgen")
+}
+
+dependencyManagement {
+    dependencies {
+        dependencySet("org.apache.wicket:8.13.0") {
+            entry("wicket-core")
+            entry("wicket-auth-roles")
+            entry("wicket-spring")
+            entry("wicket-extensions")
+            entry("wicket-devutils")
+        }
+    }
 }
 
 group = "at.dru"
