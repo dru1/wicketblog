@@ -2,7 +2,7 @@ plugins {
     java
     id("maven-publish")
     war
-    id("org.springframework.boot") version "2.4.5"
+    id("org.springframework.boot") version "2.5.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
@@ -78,5 +78,5 @@ tasks.withType<Test> {
 }
 
 tasks.bootRun {
-    main = "at.dru.wicketblog.WicketWebApplication"
+    mainClass.set("at.dru.wicketblog.WicketWebApplication")
 }
