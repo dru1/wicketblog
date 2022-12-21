@@ -2,8 +2,8 @@ plugins {
     java
     id("maven-publish")
     war
-    id("org.springframework.boot") version "2.5.4"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("org.springframework.boot") version "2.7.6"
+    id("io.spring.dependency-management") version "1.0.15.RELEASE"
 }
 
 repositories {
@@ -26,7 +26,7 @@ dependencies {
 
     // Utils
     implementation("com.google.code.findbugs:jsr305:3.0.2")
-    implementation("com.google.guava:guava:30.1.1-jre")
+    implementation("com.google.guava:guava:31.1-jre")
     implementation("org.apache.commons:commons-lang3:3.12.0")
 
     // Databases
@@ -42,7 +42,7 @@ dependencies {
 
 dependencyManagement {
     dependencies {
-        dependencySet("org.apache.wicket:8.13.0") {
+        dependencySet("org.apache.wicket:8.14.0") {
             entry("wicket-core")
             entry("wicket-auth-roles")
             entry("wicket-spring")
