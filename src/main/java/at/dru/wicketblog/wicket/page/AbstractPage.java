@@ -19,15 +19,12 @@ public abstract class AbstractPage extends WebPage {
     @SpringBean
     protected WicketWebApplication wicketWebApplication;
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
 
         // Standard - Styles
-        response.render(CssHeaderItem.forReference(new ContextRelativeResourceReference("css/default.css")));
+        response.render(CssHeaderItem.forReference(new ContextRelativeResourceReference("css/default.css", false)));
     }
 
     @Override

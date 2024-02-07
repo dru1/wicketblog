@@ -21,7 +21,7 @@ public class EntityServiceRegistry {
         EntityService<T> entityService = (EntityService<T>) entityServiceMap.get(entityClass);
 
         if (entityService == null) {
-            throw new ServiceException("No entityService registered for class: " + entityClass.getCanonicalName());
+            throw new ServiceException("No entity service registered for class: " + entityClass.getCanonicalName());
         }
 
         return entityService;
