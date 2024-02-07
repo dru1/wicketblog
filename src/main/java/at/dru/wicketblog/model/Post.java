@@ -2,9 +2,9 @@ package at.dru.wicketblog.model;
 
 import at.dru.wicketblog.service.EntityPropertyDesc;
 import at.dru.wicketblog.service.EntityPropertyType;
+import jakarta.persistence.*;
 
 import javax.annotation.Nonnull;
-import javax.persistence.*;
 
 @Entity
 public class Post extends AbstractEntity {

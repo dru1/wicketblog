@@ -2,9 +2,9 @@ plugins {
     java
     id("maven-publish")
     war
-    id("org.springframework.boot") version "2.7.10"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    id("org.cyclonedx.bom") version "1.7.4"
+    id("org.springframework.boot") version "3.2.2"
+    id("io.spring.dependency-management") version "1.1.4"
+    id("org.cyclonedx.bom") version "1.8.2"
 }
 
 repositories {
@@ -27,23 +27,22 @@ dependencies {
 
     // Utils
     implementation("com.google.code.findbugs:jsr305:3.0.2")
-    implementation("com.google.guava:guava:31.1-jre")
-    implementation("org.apache.commons:commons-lang3:3.12.0")
+    implementation("com.google.guava:guava:33.0.0-jre")
 
     // Databases
-    runtimeOnly("org.hsqldb:hsqldb:2.5.2")
-    runtimeOnly("mysql:mysql-connector-java:8.0.32")
+    runtimeOnly("com.h2database:h2:2.2.224")
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.3.2")
 
     // Tests
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     // JPA
-    annotationProcessor("org.hibernate:hibernate-jpamodelgen")
+    annotationProcessor("org.hibernate.orm:hibernate-jpamodelgen")
 }
 
 dependencyManagement {
     dependencies {
-        dependencySet("org.apache.wicket:8.14.0") {
+        dependencySet("org.apache.wicket:10.0.0-M2") {
             entry("wicket-core")
             entry("wicket-auth-roles")
             entry("wicket-spring")
@@ -58,8 +57,8 @@ version = "0.0.1-SNAPSHOT"
 description = "at.dru.wicketblog"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 publishing {

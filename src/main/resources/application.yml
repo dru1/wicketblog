@@ -1,0 +1,33 @@
+application:
+  runtimeType: DEVELOPMENT
+  appName: Wicket Blog Demo
+  pageSize: 20
+
+#logging.level=INFO
+#logging.level.org.hibernate: DEBUG
+#logging.level.com.zaxxer.hikari: DEBUG
+#logging.level.org.apache.wicket.model=DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:h2:file:${user.home}/data/dbs/wicketblog
+
+---
+application:
+  runtimeType: DEPLOYMENT
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://localhost:3306/wicketblog
+    username: wicketblog
+    password: wicketblog

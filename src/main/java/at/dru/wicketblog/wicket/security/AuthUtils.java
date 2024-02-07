@@ -1,9 +1,9 @@
 package at.dru.wicketblog.wicket.security;
 
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 
 public final class AuthUtils {
 

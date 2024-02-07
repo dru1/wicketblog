@@ -6,12 +6,10 @@ import at.dru.wicketblog.wicket.component.ListPanel;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.springframework.util.ReflectionUtils;
+import org.springframework.beans.BeanUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 public abstract class AbstractAdminFormPage<T extends AbstractEntity> extends AbstractAuthenticatedPage {
 
@@ -36,14 +34,7 @@ public abstract class AbstractAdminFormPage<T extends AbstractEntity> extends Ab
     }
 
     protected T newInstance() {
-        Constructor<T> constructor;
-        try {
-            constructor = ReflectionUtils.accessibleConstructor(getFormType(), new Class<?>[] {});
-            return constructor.newInstance(new Object[] {});
-        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | IllegalArgumentException
-                | InvocationTargetException e) {
-            throw new RuntimeException("Cannot create instance of type " + getFormType().getCanonicalName(), e);
-        }
+        return BeanUtils.instantiateClass(getFormType());
     }
 
     protected abstract ListPanel<T> getListPanel(@Nonnull String wicketId);

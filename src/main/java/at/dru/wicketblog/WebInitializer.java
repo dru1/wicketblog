@@ -1,14 +1,13 @@
 package at.dru.wicketblog;
 
+import jakarta.servlet.FilterRegistration;
+import jakarta.servlet.ServletContext;
 import org.apache.wicket.protocol.http.WicketFilter;
 import org.apache.wicket.spring.SpringWebApplicationFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Configuration;
-
-import javax.servlet.FilterRegistration;
-import javax.servlet.ServletContext;
 
 @Configuration
 public class WebInitializer implements ServletContextInitializer {

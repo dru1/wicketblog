@@ -2,7 +2,6 @@ package at.dru.wicketblog.wicket.security;
 
 import at.dru.wicketblog.model.Account;
 import at.dru.wicketblog.service.AccountService;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
@@ -51,7 +50,7 @@ public class CurrentAuthenticatedWebSession extends AuthenticatedWebSession {
         if (account != null) {
             accountId = account.getId();
 
-            if (BooleanUtils.isTrue(account.getAdminUser())) {
+            if (Boolean.TRUE.equals(account.getAdminUser())) {
                 roles.add(Roles.ADMIN);
             }
 
@@ -64,7 +63,7 @@ public class CurrentAuthenticatedWebSession extends AuthenticatedWebSession {
     @Override
     public void signOut() {
         super.signOut();
-        
+
         reset();
     }
 

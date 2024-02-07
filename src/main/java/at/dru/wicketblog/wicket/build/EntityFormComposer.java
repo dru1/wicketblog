@@ -5,12 +5,12 @@ import at.dru.wicketblog.wicket.component.EntityForm;
 import at.dru.wicketblog.wicket.component.FieldType;
 import at.dru.wicketblog.wicket.component.FormRow;
 import at.dru.wicketblog.wicket.model.MetaModel;
+import jakarta.persistence.metamodel.Attribute;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 
 import javax.annotation.Nonnull;
-import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
 public final class EntityFormComposer<E extends AbstractEntity> {

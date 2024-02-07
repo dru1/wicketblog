@@ -69,6 +69,7 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
     protected void init() {
         super.init();
 
+        getCspSettings().blocking().disabled();
         getComponentInstantiationListeners().add(new SpringComponentInjector(this, applicationContext));
         getResourceSettings().getStringResourceLoaders().add(new MessageSourceResourceLoader());
         getMarkupSettings().setStripWicketTags(true);

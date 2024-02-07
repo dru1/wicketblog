@@ -1,8 +1,9 @@
 package at.dru.wicketblog.model;
 
+import jakarta.persistence.Basic;
+import jakarta.persistence.Entity;
+
 import javax.annotation.Nonnull;
-import javax.persistence.Basic;
-import javax.persistence.Entity;
 
 @Entity
 public class Account extends AbstractEntity {

@@ -9,7 +9,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import javax.annotation.Nonnull;
 
 public class EntityForm<T extends AbstractEntity> extends Form<T> {
-    
+
     private static final long serialVersionUID = 1L;
 
     @SpringBean
@@ -38,4 +38,5 @@ public class EntityForm<T extends AbstractEntity> extends Form<T> {
         entityServiceRegistry.forClass(entityClass).saveEntity(entity);
         success(entityClass.getSimpleName() + " created/updated with id: " + entity.getId());
     }
+
 }

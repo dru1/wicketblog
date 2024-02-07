@@ -1,10 +1,10 @@
 package at.dru.wicketblog.wicket.behavior;
 
-import javax.annotation.Nonnull;
-
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
+
+import javax.annotation.Nonnull;
 
 public class VisibilityBehavior extends Behavior {
 

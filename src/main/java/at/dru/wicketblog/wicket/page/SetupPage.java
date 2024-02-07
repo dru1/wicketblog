@@ -12,7 +12,7 @@ import org.apache.wicket.util.value.ValueMap;
 public class SetupPage extends AbstractPage {
 
     private static final long serialVersionUID = 1L;
-    
+
     @SpringBean
     private AccountService accountService;
 
