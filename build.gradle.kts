@@ -2,9 +2,9 @@ plugins {
     java
     id("maven-publish")
     war
-    id("org.springframework.boot") version "3.2.2"
-    id("io.spring.dependency-management") version "1.1.4"
-    id("org.cyclonedx.bom") version "1.8.2"
+    id("org.springframework.boot") version "3.5.5"
+    id("io.spring.dependency-management") version "1.1.7"
+    id("org.cyclonedx.bom") version "2.3.1"
 }
 
 repositories {
@@ -27,11 +27,11 @@ dependencies {
 
     // Utils
     implementation("com.google.code.findbugs:jsr305:3.0.2")
-    implementation("com.google.guava:guava:33.0.0-jre")
+    implementation("com.google.guava:guava:33.4.8-jre")
 
     // Databases
-    runtimeOnly("com.h2database:h2:2.2.224")
-    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.3.2")
+    runtimeOnly("com.h2database:h2:2.3.232")
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.5.6")
 
     // Tests
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -42,7 +42,7 @@ dependencies {
 
 dependencyManagement {
     dependencies {
-        dependencySet("org.apache.wicket:10.0.0-M2") {
+        dependencySet("org.apache.wicket:10.6.0") {
             entry("wicket-core")
             entry("wicket-auth-roles")
             entry("wicket-spring")
