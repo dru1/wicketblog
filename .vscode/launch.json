@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "WicketWebApplication",
+            "request": "launch",
+            "mainClass": "at.dru.wicketblog.WicketWebApplication",
+            "projectName": "wicketblog"
+        },
+        {
+            "type": "java",
             "name": "Debug (Launch)",
             "request": "launch",
             "mainClass": "at.dru.wicketblog.WebApplication",
