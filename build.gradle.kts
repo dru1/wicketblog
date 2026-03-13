@@ -81,11 +81,8 @@ tasks.bootRun {
     mainClass.set("at.dru.wicketblog.WicketWebApplication")
 }
 
-// tasks.cyclonedxBom {
-//     setProjectType("application")
-//     setOutputName("bom")
-//     setOutputFormat("json")
-//     setIncludeBomSerialNumber(false)
-//     setIncludeLicenseText(true)
-//     setComponentVersion("2.0.0")
-// }
+tasks.cyclonedxBom {
+    projectType.set(org.cyclonedx.model.Component.Type.APPLICATION)
+    includeBomSerialNumber.set(false)
+    includeLicenseText.set(true)
+}
