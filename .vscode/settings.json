@@ -1,4 +1,7 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
-    "editor.rulers": [ 160 ]
+    "editor.rulers": [
+        160
+    ],
+    "java.compile.nullAnalysis.mode": "disabled"
 }
