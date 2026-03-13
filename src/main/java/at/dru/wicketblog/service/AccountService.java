@@ -2,11 +2,9 @@ package at.dru.wicketblog.service;
 
 import at.dru.wicketblog.model.Account;
 import at.dru.wicketblog.model.AccountRepository;
+import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @Service
 public class AccountService extends AbstractEntityService<Account> {
@@ -14,8 +12,7 @@ public class AccountService extends AbstractEntityService<Account> {
     @Autowired
     private AccountRepository accountRepository;
 
-    @Nullable
-    public Account login(@Nonnull String login, @Nonnull String password) {
+    public @Nullable Account login(String login, String password) {
         for (Account account : accountRepository.findByLogin(login)) {
             if (account.getPassword().equals(password)) {
                 return account;
@@ -25,7 +22,7 @@ public class AccountService extends AbstractEntityService<Account> {
         return null;
     }
 
-    public void setupAdmin(@Nonnull String login, @Nonnull String password, boolean isAdmin) {
+    public void setupAdmin(String login, String password, boolean isAdmin) {
         Account acc = new Account();
 
         acc.setLogin(login);
@@ -35,24 +32,21 @@ public class AccountService extends AbstractEntityService<Account> {
         accountRepository.save(acc);
     }
 
-    @Nonnull
     @Override
     public Class<Account> getEntityType() {
         return Account.class;
     }
 
     @Override
-    public void saveEntity(@Nonnull Account entity) {
+    public void saveEntity(Account entity) {
         accountRepository.save(entity);
     }
 
-    @Nullable
     @Override
-    public Account findByEntityId(@Nonnull Long entityId) {
+    public @Nullable Account findByEntityId(Long entityId) {
         return accountRepository.findById(entityId).orElse(null);
     }
 
-    @Nonnull
     @Override
     public Iterable<Account> findAll() {
         return accountRepository.findAll();

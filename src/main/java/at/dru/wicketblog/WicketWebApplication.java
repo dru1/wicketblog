@@ -22,7 +22,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.annotation.Nonnull;
 import java.time.ZonedDateTime;
 
 @Configuration
@@ -55,12 +54,10 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
         return HomePage.class;
     }
 
-    @Nonnull
     public ZonedDateTime getStartup() {
         return startup;
     }
 
-    @Nonnull
     public String getAppName() {
         return appName;
     }

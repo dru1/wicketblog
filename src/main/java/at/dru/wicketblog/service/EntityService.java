@@ -1,19 +1,16 @@
 package at.dru.wicketblog.service;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public interface EntityService<T> {
 
-    @Nonnull
     Class<T> getEntityType();
 
-    void saveEntity(@Nonnull T entity);
+    void saveEntity(T entity);
 
     @Nullable
-    T findByEntityId(@Nonnull Long entityId);
+    T findByEntityId(Long entityId);
 
-    @Nonnull
     Iterable<T> findAll();
 
 }

@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.util.Assert;
 
-import javax.annotation.Nonnull;
 import java.util.Iterator;
 
 public class EntityDataProvider<E extends AbstractEntity> implements IDataProvider<E> {
@@ -19,7 +18,7 @@ public class EntityDataProvider<E extends AbstractEntity> implements IDataProvid
     private final SerializableFunction<PageRequest, Page<E>> pageFunction;
     private final int pageSize;
 
-    public EntityDataProvider(@Nonnull Class<E> entityClass, @Nonnull SerializableFunction<PageRequest, Page<E>> pageFunction, int pageSize) {
+    public EntityDataProvider(Class<E> entityClass, SerializableFunction<PageRequest, Page<E>> pageFunction, int pageSize) {
         this.entityClass = entityClass;
         this.pageFunction = pageFunction;
         this.pageSize = Math.max(pageSize, MIN_PAGE_SIZE);
@@ -40,7 +39,6 @@ public class EntityDataProvider<E extends AbstractEntity> implements IDataProvid
         return new EntityModel<>(object, entityClass);
     }
 
-    @Nonnull
     private Page<E> getPage(long first, long count) {
         Assert.isTrue(count <= pageSize, "The requested count must not exceed the page size.");
         Assert.isTrue(first % pageSize == 0, "The offset must be a multiple of: " + pageSize);

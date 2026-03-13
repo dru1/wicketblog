@@ -15,8 +15,6 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import javax.annotation.Nonnull;
-
 public class EntityPropertyForm<T, E extends AbstractEntity> extends Panel {
 
     private static final long serialVersionUID = 1L;
@@ -28,7 +26,7 @@ public class EntityPropertyForm<T, E extends AbstractEntity> extends Panel {
     private final FieldType fieldType;
     private final MetaModel<E> labelModel;
 
-    public EntityPropertyForm(@Nonnull String id, @Nonnull EntityPropertyModel<T, E> entityPropertyModel, @Nonnull FieldType fieldType) {
+    public EntityPropertyForm(String id, EntityPropertyModel<T, E> entityPropertyModel, FieldType fieldType) {
         super(id, entityPropertyModel);
 
         this.entityPropertyModel = entityPropertyModel;

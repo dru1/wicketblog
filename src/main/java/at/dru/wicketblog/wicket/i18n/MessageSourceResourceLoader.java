@@ -4,10 +4,9 @@ import org.apache.wicket.Component;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.resource.loader.IStringResourceLoader;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.jspecify.annotations.Nullable;
 import org.springframework.context.MessageSource;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Locale;
 
 public class MessageSourceResourceLoader implements IStringResourceLoader {
@@ -21,7 +20,7 @@ public class MessageSourceResourceLoader implements IStringResourceLoader {
 
     @Override
     public String loadStringResource(@Nullable Class<?> clazz,
-                                     @Nonnull String key,
+                                     String key,
                                      @Nullable Locale locale,
                                      @Nullable String style,
                                      @Nullable String variation) {
@@ -30,7 +29,7 @@ public class MessageSourceResourceLoader implements IStringResourceLoader {
 
     @Override
     public String loadStringResource(@Nullable Component component,
-                                     @Nonnull String key,
+                                     String key,
                                      @Nullable Locale locale,
                                      @Nullable String style,
                                      @Nullable String variation) {

@@ -6,13 +6,11 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import javax.annotation.Nonnull;
-
 public class StyledFeedbackMessage extends Panel {
 
     private final FeedbackMessage message;
 
-    public StyledFeedbackMessage(@Nonnull String id, @Nonnull FeedbackMessage message) {
+    public StyledFeedbackMessage(String id, FeedbackMessage message) {
         super(id);
 
         this.message = message;
@@ -60,7 +58,6 @@ public class StyledFeedbackMessage extends Panel {
         });
     }
 
-    @Nonnull
     private FeedbackMessage getMessage() {
         return message;
     }

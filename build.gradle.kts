@@ -4,6 +4,7 @@ plugins {
     war
     id("org.springframework.boot") version "4.0.3"
     id("io.spring.dependency-management") version "1.1.7"
+    id("org.openrewrite.rewrite") version "7.28.1"
     id("org.cyclonedx.bom") version "3.2.2"
 }
 
@@ -26,7 +27,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     // Utils
-    implementation("com.google.code.findbugs:jsr305:3.0.2")
     implementation("com.google.guava:guava:33.5.0-jre")
 
     // Databases
@@ -38,6 +38,9 @@ dependencies {
 
     // JPA
     annotationProcessor("org.hibernate.orm:hibernate-jpamodelgen:7.2.4.Final")
+
+    // Rewrite
+    rewrite("org.openrewrite.recipe:rewrite-migrate-java:3.30.0")
 }
 
 dependencyManagement {
@@ -85,4 +88,8 @@ tasks.cyclonedxBom {
     projectType.set(org.cyclonedx.model.Component.Type.APPLICATION)
     includeBomSerialNumber.set(false)
     includeLicenseText.set(true)
+}
+
+rewrite {
+    activeRecipe("org.openrewrite.java.jspecify.JSpecifyBestPractices")
 }

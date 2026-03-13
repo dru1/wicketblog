@@ -7,8 +7,6 @@ import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import javax.annotation.Nonnull;
-
 public class MetaModel<T extends AbstractEntity> implements IModel<String> {
 
     private static final long serialVersionUID = 1L;
@@ -24,11 +22,11 @@ public class MetaModel<T extends AbstractEntity> implements IModel<String> {
 
     private boolean attached = false;
 
-    public MetaModel(@Nonnull Attribute<T, ?> jpaAttribute) {
+    public MetaModel(Attribute<T, ?> jpaAttribute) {
         this(jpaAttribute.getDeclaringType().getJavaType(), jpaAttribute.getName());
     }
 
-    public MetaModel(@Nonnull Class<T> entityClass, @Nonnull String property) {
+    public MetaModel(Class<T> entityClass, String property) {
         Injector.get().inject(this);
 
         this.entityClass = entityClass;

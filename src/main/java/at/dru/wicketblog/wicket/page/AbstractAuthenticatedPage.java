@@ -5,9 +5,7 @@ import at.dru.wicketblog.model.AccountRepository;
 import at.dru.wicketblog.wicket.security.CurrentAuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public abstract class AbstractAuthenticatedPage extends AbstractPage {
 
@@ -49,22 +47,18 @@ public abstract class AbstractAuthenticatedPage extends AbstractPage {
         return result;
     }
 
-    @Nullable
-    protected String getRequiresRole() {
+    protected @Nullable String getRequiresRole() {
         return null;
     }
 
-    @Nullable
-    protected Roles getRequiresAllRoles() {
+    protected @Nullable Roles getRequiresAllRoles() {
         return null;
     }
 
-    @Nullable
-    protected Roles getRequiresAnyRole() {
+    protected @Nullable Roles getRequiresAnyRole() {
         return null;
     }
 
-    @Nonnull
     protected Account getCurrentAccount() {
         checkPrivileges();
 

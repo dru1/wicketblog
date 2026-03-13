@@ -8,8 +8,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.ChainingModel;
 
-import javax.annotation.Nonnull;
-
 public class LoginFormPanel extends Panel {
 
     private static final long serialVersionUID = 1L;
@@ -17,7 +15,7 @@ public class LoginFormPanel extends Panel {
     private transient String username;
     private transient String password;
 
-    public LoginFormPanel(@Nonnull String id) {
+    public LoginFormPanel(String id) {
         super(id);
 
         setRenderBodyOnly(true);
@@ -49,7 +47,7 @@ public class LoginFormPanel extends Panel {
         add(form);
     }
 
-    protected void composeForm(@Nonnull Form<Void> loginForm) {
+    protected void composeForm(Form<Void> loginForm) {
         new FormComposer<>(loginForm)
                 .textField("username", FieldType.TEXT_FIELD, new MetaModel<>(Account_.login))
                 .textField("password", FieldType.PASSWORD_FIELD, new MetaModel<>(Account_.password));

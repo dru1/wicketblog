@@ -7,8 +7,6 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.springframework.util.Assert;
 
-import javax.annotation.Nonnull;
-
 public class EntityModel<E extends AbstractEntity> extends LoadableDetachableModel<E> {
 
     @SpringBean
@@ -17,7 +15,7 @@ public class EntityModel<E extends AbstractEntity> extends LoadableDetachableMod
     private final Class<E> entityClass;
     private final Long entityId;
 
-    public EntityModel(@Nonnull E entity, @Nonnull Class<E> entityClass) {
+    public EntityModel(E entity, Class<E> entityClass) {
         Injector.get().inject(this);
 
         Assert.notNull(entity.getId(), "The entity must have an id.");

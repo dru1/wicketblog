@@ -4,8 +4,6 @@ import at.dru.wicketblog.service.EntityPropertyDesc;
 import at.dru.wicketblog.service.EntityPropertyType;
 import jakarta.persistence.*;
 
-import javax.annotation.Nonnull;
-
 @Entity
 public class Post extends AbstractEntity {
 
@@ -17,7 +15,6 @@ public class Post extends AbstractEntity {
 
     private PostCategory postCategory;
 
-    @Nonnull
     @Basic(optional = false)
     @EntityPropertyDesc(type = EntityPropertyType.SHORT_TEXT, optional = false)
     public String getTitle() {
@@ -28,7 +25,6 @@ public class Post extends AbstractEntity {
         this.title = title;
     }
 
-    @Nonnull
     @Lob
     @Column(nullable = false, length = 100000)
     @EntityPropertyDesc(type = EntityPropertyType.LONG_TEXT, optional = true)
@@ -36,29 +32,27 @@ public class Post extends AbstractEntity {
         return content;
     }
 
-    public void setContent(@Nonnull String content) {
+    public void setContent(String content) {
         this.content = content;
     }
 
-    @Nonnull
     @ManyToOne(optional = false)
     @EntityPropertyDesc(type = EntityPropertyType.MANY_TO_ONE, optional = false)
     public Account getAuthor() {
         return author;
     }
 
-    public void setAuthor(@Nonnull Account author) {
+    public void setAuthor(Account author) {
         this.author = author;
     }
 
-    @Nonnull
     @ManyToOne(optional = false)
     @EntityPropertyDesc(type = EntityPropertyType.MANY_TO_ONE, optional = false)
     public PostCategory getPostCategory() {
         return postCategory;
     }
 
-    public void setPostCategory(@Nonnull PostCategory postCategory) {
+    public void setPostCategory(PostCategory postCategory) {
         this.postCategory = postCategory;
     }
 }

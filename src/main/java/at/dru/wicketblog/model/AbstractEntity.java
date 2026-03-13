@@ -4,7 +4,6 @@ import at.dru.wicketblog.service.EntityPropertyDesc;
 import at.dru.wicketblog.service.EntityPropertyType;
 import jakarta.persistence.*;
 
-import javax.annotation.Nonnull;
 import java.util.Date;
 
 @MappedSuperclass
@@ -18,7 +17,6 @@ public abstract class AbstractEntity {
 
     private boolean disabled;
 
-    @Nonnull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @EntityPropertyDesc(type = EntityPropertyType.ID, optional = false)
@@ -26,40 +24,37 @@ public abstract class AbstractEntity {
         return id;
     }
 
-    public void setId(@Nonnull Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Nonnull
     @Basic(optional = false)
     @EntityPropertyDesc(type = EntityPropertyType.DATETIME, optional = false)
     public Date getCreated() {
         return created;
     }
 
-    public void setCreated(@Nonnull Date created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    @Nonnull
     @Basic(optional = true)
     @EntityPropertyDesc(type = EntityPropertyType.DATETIME, optional = false)
     public Date getModified() {
         return modified;
     }
 
-    public void setModified(@Nonnull Date modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 
-    @Nonnull
     @Basic(optional = false)
     @EntityPropertyDesc(type = EntityPropertyType.FLAG, optional = false)
     public Boolean getDisabled() {
         return disabled;
     }
 
-    public void setDisabled(@Nonnull Boolean disabled) {
+    public void setDisabled(Boolean disabled) {
         this.disabled = disabled;
     }
 

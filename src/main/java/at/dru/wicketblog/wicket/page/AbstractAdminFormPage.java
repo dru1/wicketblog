@@ -6,10 +6,8 @@ import at.dru.wicketblog.wicket.component.ListPanel;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.jspecify.annotations.Nullable;
 import org.springframework.beans.BeanUtils;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public abstract class AbstractAdminFormPage<T extends AbstractEntity> extends AbstractAuthenticatedPage {
 
@@ -37,15 +35,14 @@ public abstract class AbstractAdminFormPage<T extends AbstractEntity> extends Ab
         return BeanUtils.instantiateClass(getFormType());
     }
 
-    protected abstract ListPanel<T> getListPanel(@Nonnull String wicketId);
+    protected abstract ListPanel<T> getListPanel(String wicketId);
 
-    protected abstract EntityFormPanel<T> getFormPanel(@Nonnull String wicketId, @Nonnull IModel<T> formModel);
+    protected abstract EntityFormPanel<T> getFormPanel(String wicketId, IModel<T> formModel);
 
     protected abstract Class<T> getFormType();
 
-    @Nullable
     @Override
-    protected String getRequiresRole() {
+    protected @Nullable String getRequiresRole() {
         return Roles.ADMIN;
     }
 

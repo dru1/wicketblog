@@ -7,8 +7,6 @@ import at.dru.wicketblog.wicket.component.PostCategoryFormPanel;
 import at.dru.wicketblog.wicket.component.PostCategoryListPanel;
 import org.apache.wicket.model.IModel;
 
-import javax.annotation.Nonnull;
-
 public class AdminPostCategoryPage extends AbstractAdminFormPage<PostCategory> {
 
     private static final long serialVersionUID = 1L;
@@ -19,12 +17,12 @@ public class AdminPostCategoryPage extends AbstractAdminFormPage<PostCategory> {
     }
 
     @Override
-    protected ListPanel<PostCategory> getListPanel(@Nonnull String wicketId) {
+    protected ListPanel<PostCategory> getListPanel(String wicketId) {
         return new PostCategoryListPanel(wicketId);
     }
 
     @Override
-    protected EntityFormPanel<PostCategory> getFormPanel(@Nonnull String wicketId, @Nonnull IModel<PostCategory> formModel) {
+    protected EntityFormPanel<PostCategory> getFormPanel(String wicketId, IModel<PostCategory> formModel) {
         return new PostCategoryFormPanel(wicketId, formModel);
     }
 

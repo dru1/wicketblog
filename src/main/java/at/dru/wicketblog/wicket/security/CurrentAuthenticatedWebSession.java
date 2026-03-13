@@ -8,9 +8,7 @@ import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class CurrentAuthenticatedWebSession extends AuthenticatedWebSession {
 
@@ -35,8 +33,7 @@ public class CurrentAuthenticatedWebSession extends AuthenticatedWebSession {
         reset();
     }
 
-    @Nullable
-    public Long getAccountId() {
+    public @Nullable Long getAccountId() {
         return accountId;
     }
 
@@ -73,7 +70,6 @@ public class CurrentAuthenticatedWebSession extends AuthenticatedWebSession {
         roles.add(Roles.USER);
     }
 
-    @Nonnull
     @Override
     public Roles getRoles() {
         return roles;

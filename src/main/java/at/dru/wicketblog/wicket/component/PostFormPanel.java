@@ -7,18 +7,16 @@ import at.dru.wicketblog.wicket.build.EntityFormComposer;
 import at.dru.wicketblog.wicket.model.EntityListModel;
 import org.apache.wicket.model.IModel;
 
-import javax.annotation.Nonnull;
-
 public class PostFormPanel extends EntityFormPanel<Post> {
 
     private static final long serialVersionUID = 1L;
 
-    public PostFormPanel(@Nonnull String id, @Nonnull IModel<Post> model) {
+    public PostFormPanel(String id, IModel<Post> model) {
         super(id, model, Post.class);
     }
 
     @Override
-    protected void composeForm(@Nonnull EntityForm<Post> entityForm) {
+    protected void composeForm(EntityForm<Post> entityForm) {
         super.composeForm(entityForm);
 
         new EntityFormComposer<>(entityForm)

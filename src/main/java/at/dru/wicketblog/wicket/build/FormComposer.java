@@ -10,18 +10,15 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 
-import javax.annotation.Nonnull;
-
 public class FormComposer<E> {
 
     private final Form<E> form;
 
-    public FormComposer(@Nonnull Form<E> form) {
+    public FormComposer(Form<E> form) {
         this.form = form;
     }
 
-    @Nonnull
-    public FormComposer<E> textField(@Nonnull String fieldName, @Nonnull FieldType fieldType, @Nonnull IModel<String> labelModel) {
+    public FormComposer<E> textField(String fieldName, FieldType fieldType, IModel<String> labelModel) {
         final PropertyModel<String> fieldModel = new PropertyModel<>(form.getModel(), fieldName);
 
         FormRow formComponent = new FormRow(fieldName, labelModel);
@@ -47,8 +44,7 @@ public class FormComposer<E> {
         return this;
     }
 
-    @Nonnull
-    public FormComposer<E> formRow(@Nonnull FormRow formRow) {
+    public FormComposer<E> formRow(FormRow formRow) {
         form.add(formRow);
         return this;
     }

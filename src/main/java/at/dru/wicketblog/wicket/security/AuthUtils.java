@@ -1,21 +1,18 @@
 package at.dru.wicketblog.wicket.security;
 
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public final class AuthUtils {
 
     private AuthUtils() {
     }
 
-    @Nullable
-    public static Long getAccountId() {
+    public static @Nullable Long getAccountId() {
         return CurrentAuthenticatedWebSession.get().getAccountId();
     }
 
-    public static boolean signIn(@Nonnull String username, @Nonnull String password) {
+    public static boolean signIn(String username, String password) {
         return CurrentAuthenticatedWebSession.get().signIn(username, password);
     }
 

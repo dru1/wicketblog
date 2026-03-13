@@ -4,8 +4,6 @@ import at.dru.wicketblog.model.AbstractEntity;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
-import javax.annotation.Nonnull;
-
 public class EntityFormPanel<T extends AbstractEntity> extends Panel {
 
     private static final long serialVersionUID = 1L;
@@ -13,7 +11,7 @@ public class EntityFormPanel<T extends AbstractEntity> extends Panel {
     private final Class<T> entityClass;
     private final IModel<T> entityFormModel;
 
-    public EntityFormPanel(@Nonnull String id, @Nonnull IModel<T> entityFormModel, @Nonnull Class<T> entityClass) {
+    public EntityFormPanel(String id, IModel<T> entityFormModel, Class<T> entityClass) {
         super(id, entityFormModel);
 
         this.entityFormModel = entityFormModel;
@@ -29,7 +27,7 @@ public class EntityFormPanel<T extends AbstractEntity> extends Panel {
         add(entityForm);
     }
 
-    protected void composeForm(@Nonnull EntityForm<T> entityForm) {
+    protected void composeForm(EntityForm<T> entityForm) {
     }
 
 }

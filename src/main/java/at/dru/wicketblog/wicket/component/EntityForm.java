@@ -6,8 +6,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import javax.annotation.Nonnull;
-
 public class EntityForm<T extends AbstractEntity> extends Form<T> {
 
     private static final long serialVersionUID = 1L;
@@ -18,14 +16,13 @@ public class EntityForm<T extends AbstractEntity> extends Form<T> {
     private final Class<T> entityClass;
     private final IModel<T> formModel;
 
-    public EntityForm(@Nonnull String id, @Nonnull IModel<T> model, @Nonnull Class<T> entityClass) {
+    public EntityForm(String id, IModel<T> model, Class<T> entityClass) {
         super(id, model);
 
         this.entityClass = entityClass;
         this.formModel = model;
     }
 
-    @Nonnull
     public Class<T> getEntityClass() {
         return entityClass;
     }

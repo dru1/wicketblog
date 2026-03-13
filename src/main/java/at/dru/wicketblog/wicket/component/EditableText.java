@@ -13,8 +13,6 @@ import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import javax.annotation.Nonnull;
-
 public class EditableText<T, E extends AbstractEntity> extends Panel {
 
     private static final long serialVersionUID = 1L;
@@ -26,7 +24,7 @@ public class EditableText<T, E extends AbstractEntity> extends Panel {
     private boolean enableMarkdown;
     private String cssClasses;
 
-    public EditableText(@Nonnull String id, @Nonnull EntityPropertyModel<T, E> entityPropertyModel) {
+    public EditableText(String id, EntityPropertyModel<T, E> entityPropertyModel) {
         super(id, entityPropertyModel);
 
         this.entityPropertyModel = entityPropertyModel;
@@ -35,20 +33,17 @@ public class EditableText<T, E extends AbstractEntity> extends Panel {
         fieldType(FieldType.TEXT_FIELD);
     }
 
-    @Nonnull
-    public EditableText<T, E> fieldType(@Nonnull FieldType fieldType) {
+    public EditableText<T, E> fieldType(FieldType fieldType) {
         this.fieldType = fieldType;
         return this;
     }
 
-    @Nonnull
     public EditableText<T, E> enableMarkdown(boolean enableMarkdown) {
         this.enableMarkdown = enableMarkdown;
         return this;
     }
 
-    @Nonnull
-    public EditableText<T, E> cssClasses(@Nonnull String cssClasses) {
+    public EditableText<T, E> cssClasses(String cssClasses) {
         this.cssClasses = cssClasses;
         return this;
     }

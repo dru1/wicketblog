@@ -7,9 +7,8 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.request.Url;
 import org.apache.wicket.request.resource.UrlResourceReference;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -24,8 +23,7 @@ public class ShowdownBehavior extends Behavior {
             Url.parse("https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js")
     );
 
-    @Nonnull
-    public ShowdownBehavior option(@Nonnull String optionKey, @Nullable String optionValue) {
+    public ShowdownBehavior option(String optionKey, @Nullable String optionValue) {
         if (optionValue == null) {
             options.remove(optionKey);
         } else {
@@ -55,8 +53,7 @@ public class ShowdownBehavior extends Behavior {
         component.getResponse().write(buildShowdownInitScript(component));
     }
 
-    @Nonnull
-    private String buildShowdownInitScript(@Nonnull Component component) {
+    private String buildShowdownInitScript(Component component) {
         return Stream.<String>builder()
                 .add("<script type=\"text/javascript\">")
                 .add("(function() {")

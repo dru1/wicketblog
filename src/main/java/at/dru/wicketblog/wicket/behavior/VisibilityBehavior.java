@@ -4,15 +4,13 @@ import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 
-import javax.annotation.Nonnull;
-
 public class VisibilityBehavior extends Behavior {
 
     private static final long serialVersionUID = 1L;
 
     private final IModel<Boolean> visibilityModel;
 
-    public VisibilityBehavior(@Nonnull IModel<Boolean> visibilityModel) {
+    public VisibilityBehavior(IModel<Boolean> visibilityModel) {
         this.visibilityModel = visibilityModel;
     }
 

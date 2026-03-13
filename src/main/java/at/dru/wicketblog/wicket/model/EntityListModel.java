@@ -7,7 +7,6 @@ import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 public class EntityListModel<E extends AbstractEntity> extends LoadableDetachableModel<List<E>> {
@@ -19,7 +18,7 @@ public class EntityListModel<E extends AbstractEntity> extends LoadableDetachabl
 
     private final Class<E> entityClass;
 
-    public EntityListModel(@Nonnull Class<E> entityClass) {
+    public EntityListModel(Class<E> entityClass) {
         Injector.get().inject(this);
 
         this.entityClass = entityClass;

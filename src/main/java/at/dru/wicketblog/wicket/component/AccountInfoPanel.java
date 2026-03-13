@@ -13,7 +13,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import javax.annotation.Nonnull;
 import java.util.Optional;
 
 public class AccountInfoPanel extends Panel {
@@ -23,7 +22,7 @@ public class AccountInfoPanel extends Panel {
     @SpringBean
     private AccountRepository accountRepository;
 
-    public AccountInfoPanel(@Nonnull String id) {
+    public AccountInfoPanel(String id) {
         super(id);
 
         setRenderBodyOnly(true);
