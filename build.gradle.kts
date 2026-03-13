@@ -2,9 +2,9 @@ plugins {
     java
     id("maven-publish")
     war
-    id("org.springframework.boot") version "3.5.5"
+    id("org.springframework.boot") version "4.0.3"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.cyclonedx.bom") version "2.3.1"
+    id("org.cyclonedx.bom") version "3.2.2"
 }
 
 repositories {
@@ -27,22 +27,22 @@ dependencies {
 
     // Utils
     implementation("com.google.code.findbugs:jsr305:3.0.2")
-    implementation("com.google.guava:guava:33.4.8-jre")
+    implementation("com.google.guava:guava:33.5.0-jre")
 
     // Databases
-    runtimeOnly("com.h2database:h2:2.3.232")
-    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.5.6")
+    runtimeOnly("com.h2database:h2:2.4.240")
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.5.7")
 
     // Tests
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     // JPA
-    annotationProcessor("org.hibernate.orm:hibernate-jpamodelgen")
+    annotationProcessor("org.hibernate.orm:hibernate-jpamodelgen:7.2.4.Final")
 }
 
 dependencyManagement {
     dependencies {
-        dependencySet("org.apache.wicket:10.6.0") {
+        dependencySet("org.apache.wicket:10.8.0") {
             entry("wicket-core")
             entry("wicket-auth-roles")
             entry("wicket-spring")
@@ -81,11 +81,11 @@ tasks.bootRun {
     mainClass.set("at.dru.wicketblog.WicketWebApplication")
 }
 
-tasks.cyclonedxBom {
-    setProjectType("application")
-    setOutputName("bom")
-    setOutputFormat("json")
-    setIncludeBomSerialNumber(false)
-    setIncludeLicenseText(true)
-    setComponentVersion("2.0.0")
-}
+// tasks.cyclonedxBom {
+//     setProjectType("application")
+//     setOutputName("bom")
+//     setOutputFormat("json")
+//     setIncludeBomSerialNumber(false)
+//     setIncludeLicenseText(true)
+//     setComponentVersion("2.0.0")
+// }
